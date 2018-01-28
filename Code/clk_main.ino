@@ -9,7 +9,7 @@ oe
 #include <Wire.h>
 #include "RTClib.h"
 
-#define LIGHT_TRIGGER 850
+#define LIGHT_TRIGGER 100
 
 DateTime last, current;
 RTC_DS1307 rtc;
@@ -60,8 +60,8 @@ word upDownBytes(byte segs) {
       result <<= 1;
     }
   }
-  Serial.println(segs, BIN);
-  Serial.println(result, BIN);
+  //Serial.println(segs, BIN);
+  //Serial.println(result, BIN);
   return result;
 }
 
@@ -125,7 +125,9 @@ void setTimeMode() {
 
 void loop() {
   current = rtc.now();                           // Update the time
-  if (analogRead(A0) > LIGHT_TRIGGER) {          // If it's dark out turn off
+  int light_reading = analogRead(A0);
+  Serial.println(light_reading);
+  if (light_reading > LIGHT_TRIGGER) {          // If it's dark out turn off
     blackOut(1,1);
   } else {
     if (last.minute() != current.minute()) {     // If the time has changed, update!
