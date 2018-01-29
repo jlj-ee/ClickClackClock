@@ -1,0 +1,14 @@
+Part	Value	Attributes	Package	Description	Part Num	Mfg Name	VID	Vendor Part Num	Description	Pkg Code	XREF
+C1	0.1uF		C2.5-2	CAPACITOR	21RZ310-RC	Xicon	ME	21RZ310-RC	Multilayer Ceramic Capacitors MLCC - Leaded .1uF 50volts Z5U 20% 2.5mm L/S	*	REF5
+C2	0.1uF		C2.5-2	CAPACITOR	21RZ310-RC	Xicon	ME	21RZ310-RC	Multilayer Ceramic Capacitors MLCC - Leaded .1uF 50volts Z5U 20% 2.5mm L/S	*	REF5
+C3	0.1uF		C2.5-2	CAPACITOR	21RZ310-RC	Xicon	ME	21RZ310-RC	Multilayer Ceramic Capacitors MLCC - Leaded .1uF 50volts Z5U 20% 2.5mm L/S	*	REF5
+C4	2000uF		E7,5-16	POLARIZED CAPACITOR, American symbol	EEU-TP1E202S	Panasonic	ME	667-EEU-TP1E202S	Aluminum Electrolytic Capacitors - Leaded Aluminum Electrolytic Capacitors - Leaded 2000uF 25volts AEC-Q200	*	REF1
+LED1			LED3MM	LED	WP7113SRD/D	Kingbright	ME	604-WP7113SRD/D	Standard LEDs - Through Hole RED DIFFUSED	*	REF8
+P8			1X04_LONGPADS	Header 4	826631-4	TE Connectivity	ME	571-826631-4	Headers & Wire Housings 1X04 POS R/A AU	*	REF4
+P9			1X04_LONGPADS	Header 4	826631-4	TE Connectivity	ME	571-826631-4	Headers & Wire Housings 1X04 POS R/A AU	*	REF4
+P10			SCREWTERMINAL-3.5MM-3	Header 3	1546551-3	TE Connectivity	ME	571-1546551-3	Fixed Terminal Blocks 3P,STRAIGHT SIDE ENTRY,3.5MM	*	REF3
+P11			SCREWTERMINAL-3.5MM-3	Header 3	1546551-3	TE Connectivity	ME	571-1546551-3	Fixed Terminal Blocks 3P,STRAIGHT SIDE ENTRY,3.5MM	*	REF3
+R1	470Ohm		0204/7	RESISTOR, American symbol	CFR-25JR-52-470R	Yageo	ME	603-CFR-25JR-52470R	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 470ohm 1/4W 5%	*	REF2
+U1	MIC5891		DIL16	8-Bit Serial-Input Latched Source Driver	MIC5891YN	Microchip Technology / Micrel	ME	998-MIC5891YN	Latches 8-Bit Serial Input Latched Driver	*	REF7
+U2	MIC5891		DIL16	8-Bit Serial-Input Latched Source Driver	MIC5891YN	Microchip Technology / Micrel	ME	998-MIC5891YN	Latches 8-Bit Serial Input Latched Driver	*	REF7
+U3	HEX_CONVERTERDIP16		DIL16	74HC4050 Hex Buffer Level Shifter SMD SO016	CD74HC4050E	Texas Instruments	ME	595-CD74HC4050E	Buffers & Line Drivers Hex Non-Inverting	*	REF6
