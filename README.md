@@ -1,4 +1,4 @@
 # ClickClackClock
 An impractically loud and large clock with a dumb name.
 
-Constructed from salvaged mechanical seven-segment displays, mdf, and custom oshpark pcbs.
+Constructed from salvaged electromechanical seven-segment displays, MDF, and custom OSHpark PCB.
