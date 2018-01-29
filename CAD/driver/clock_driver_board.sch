@@ -13,11 +13,11 @@
 <layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
-<layer number="20" name="Dimension" color="15" fill="1" visible="no" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="20" name="Dimension" color="7" fill="1" visible="no" active="no"/>
+<layer number="21" name="tPlace" color="15" fill="1" visible="no" active="no"/>
+<layer number="22" name="bPlace" color="14" fill="1" visible="no" active="no"/>
+<layer number="23" name="tOrigins" color="7" fill="1" visible="no" active="no"/>
+<layer number="24" name="bOrigins" color="7" fill="1" visible="no" active="no"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
@@ -44,7 +44,7 @@
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="51" name="tDocu" color="6" fill="1" visible="no" active="no"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
@@ -13033,6 +13033,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </library>
 </libraries>
 <attributes>
+<attribute name="DATABASE" value="../../PartsDatabase.txt"/>
 </attributes>
 <variantdefs>
 </variantdefs>
@@ -13041,32 +13042,72 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </class>
 </classes>
 <parts>
-<part name="U1" library="random" deviceset="MIC5891" device=""/>
-<part name="LED1" library="adafruit" deviceset="LED" device="3MM"/>
-<part name="P8" library="SparkFun-Connectors" deviceset="M04" device="LONGPADS"/>
-<part name="P9" library="SparkFun-Connectors" deviceset="M04" device="LONGPADS"/>
-<part name="P3" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS"/>
-<part name="P2" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS"/>
-<part name="P1" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS"/>
-<part name="P0" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS"/>
-<part name="P10" library="SparkFun-Connectors" deviceset="M03" device="SCREW"/>
-<part name="P11" library="SparkFun-Connectors" deviceset="M03" device="SCREW"/>
+<part name="U1" library="random" deviceset="MIC5891" device="">
+<attribute name="PARTNO" value="MIC5891YN"/>
+</part>
+<part name="LED1" library="adafruit" deviceset="LED" device="3MM">
+<attribute name="PARTNO" value="WP7113SRD/D"/>
+</part>
+<part name="P8" library="SparkFun-Connectors" deviceset="M04" device="LONGPADS">
+<attribute name="PARTNO" value="826631-4"/>
+</part>
+<part name="P9" library="SparkFun-Connectors" deviceset="M04" device="LONGPADS">
+<attribute name="PARTNO" value="826631-4"/>
+</part>
+<part name="P3" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS">
+<attribute name="BOM" value="EXCLUDE"/>
+</part>
+<part name="P2" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS">
+<attribute name="BOM" value="EXCLUDE"/>
+</part>
+<part name="P1" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS">
+<attribute name="BOM" value="EXCLUDE"/>
+</part>
+<part name="P0" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS">
+<attribute name="BOM" value="EXCLUDE"/>
+</part>
+<part name="P10" library="SparkFun-Connectors" deviceset="M03" device="SCREW">
+<attribute name="PARTNO" value="1546551-3"/>
+</part>
+<part name="P11" library="SparkFun-Connectors" deviceset="M03" device="SCREW">
+<attribute name="PARTNO" value="1546551-3"/>
+</part>
 <part name="SUPPLY1" library="supply2" deviceset="GND" device=""/>
-<part name="U2" library="random" deviceset="MIC5891" device=""/>
-<part name="P7" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS"/>
-<part name="P6" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS"/>
-<part name="P5" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS"/>
-<part name="P4" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS"/>
+<part name="U2" library="random" deviceset="MIC5891" device="">
+<attribute name="PARTNO" value="MIC5891YN"/>
+</part>
+<part name="P7" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS">
+<attribute name="BOM" value="EXCLUDE"/>
+</part>
+<part name="P6" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS">
+<attribute name="BOM" value="EXCLUDE"/>
+</part>
+<part name="P5" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS">
+<attribute name="BOM" value="EXCLUDE"/>
+</part>
+<part name="P4" library="SparkFun-Connectors" deviceset="M03" device="LONGPADS">
+<attribute name="BOM" value="EXCLUDE"/>
+</part>
 <part name="SUPPLY3" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY4" library="supply2" deviceset="GND" device=""/>
 <part name="SUPPLY5" library="supply2" deviceset="GND" device=""/>
-<part name="R1" library="resistor" deviceset="R-US_" device="0204/7" value="500Ohm"/>
+<part name="R1" library="resistor" deviceset="R-US_" device="0204/7" value="470Ohm">
+<attribute name="PARTNO" value="CFR-25JR-52-470R"/>
+</part>
 <part name="SUPPLY2" library="supply2" deviceset="GND" device=""/>
-<part name="C2" library="capacitor-wima" deviceset="C" device="2.5/2" value="0.1uF"/>
-<part name="C1" library="capacitor-wima" deviceset="C" device="2.5/2" value="0.1uF"/>
-<part name="U3" library="SparkFun-DigitalIC" deviceset="HEX_CONVERTER" device="DIP16"/>
+<part name="C2" library="capacitor-wima" deviceset="C" device="2.5/2" value="0.1uF">
+<attribute name="PARTNO" value="21RZ310-RC"/>
+</part>
+<part name="C1" library="capacitor-wima" deviceset="C" device="2.5/2" value="0.1uF">
+<attribute name="PARTNO" value="21RZ310-RC"/>
+</part>
+<part name="U3" library="SparkFun-DigitalIC" deviceset="HEX_CONVERTER" device="DIP16">
+<attribute name="PARTNO" value="CD74HC4050E"/>
+</part>
 <part name="SUPPLY6" library="supply2" deviceset="GND" device=""/>
-<part name="C3" library="capacitor-wima" deviceset="C" device="2.5/2" value="0.1uF"/>
+<part name="C3" library="capacitor-wima" deviceset="C" device="2.5/2" value="0.1uF">
+<attribute name="PARTNO" value="21RZ310-RC"/>
+</part>
 <part name="P+1" library="supply1" deviceset="+12V" device=""/>
 <part name="P+2" library="supply1" deviceset="+12V" device=""/>
 <part name="P+3" library="supply1" deviceset="+12V" device=""/>
@@ -13074,39 +13115,84 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="P+5" library="supply1" deviceset="+5V" device=""/>
 <part name="P+6" library="supply1" deviceset="+5V" device=""/>
 <part name="P+7" library="supply1" deviceset="+5V" device=""/>
-<part name="C4" library="adafruit" deviceset="CPOL-US" device="E7.5-16" value="2000uF"/>
+<part name="C4" library="adafruit" deviceset="CPOL-US" device="E7.5-16" value="2000uF">
+<attribute name="PARTNO" value="EEU-TP1E202S"/>
+</part>
 </parts>
 <sheets>
 <sheet>
 <plain>
+<text x="96.52" y="101.6" size="1.778" layer="91">Drives a single electromechanical seven-segment digit.
+(+1 output for decimal/colon.)
+Segment solenoids connect to P0-P7</text>
 </plain>
 <instances>
-<instance part="U1" gate="G$1" x="55.88" y="58.42" rot="R90"/>
-<instance part="LED1" gate="G$1" x="-35.56" y="73.66"/>
-<instance part="P8" gate="G$1" x="10.16" y="33.02"/>
-<instance part="P9" gate="G$1" x="147.32" y="35.56" rot="R180"/>
-<instance part="P3" gate="G$1" x="33.02" y="109.22" rot="R270"/>
-<instance part="P2" gate="G$1" x="48.26" y="109.22" rot="R270"/>
-<instance part="P1" gate="G$1" x="66.04" y="109.22" rot="R270"/>
-<instance part="P0" gate="G$1" x="81.28" y="109.22" rot="R270"/>
-<instance part="P10" gate="G$1" x="-55.88" y="78.74"/>
-<instance part="P11" gate="G$1" x="-55.88" y="63.5"/>
+<instance part="U1" gate="G$1" x="55.88" y="58.42" rot="R90">
+<attribute name="PARTNO" x="55.88" y="58.42" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="LED1" gate="G$1" x="-35.56" y="73.66">
+<attribute name="PARTNO" x="-35.56" y="73.66" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="P8" gate="G$1" x="10.16" y="33.02">
+<attribute name="PARTNO" x="10.16" y="33.02" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="P9" gate="G$1" x="147.32" y="35.56" rot="R180">
+<attribute name="PARTNO" x="147.32" y="35.56" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="P3" gate="G$1" x="33.02" y="109.22" rot="R270">
+<attribute name="BOM" x="33.02" y="109.22" size="1.778" layer="96" rot="R270" display="off"/>
+</instance>
+<instance part="P2" gate="G$1" x="48.26" y="109.22" rot="R270">
+<attribute name="BOM" x="48.26" y="109.22" size="1.778" layer="96" rot="R270" display="off"/>
+</instance>
+<instance part="P1" gate="G$1" x="66.04" y="109.22" rot="R270">
+<attribute name="BOM" x="66.04" y="109.22" size="1.778" layer="96" rot="R270" display="off"/>
+</instance>
+<instance part="P0" gate="G$1" x="81.28" y="109.22" rot="R270">
+<attribute name="BOM" x="81.28" y="109.22" size="1.778" layer="96" rot="R270" display="off"/>
+</instance>
+<instance part="P10" gate="G$1" x="-55.88" y="78.74">
+<attribute name="PARTNO" x="-55.88" y="78.74" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="P11" gate="G$1" x="-55.88" y="63.5">
+<attribute name="PARTNO" x="-55.88" y="63.5" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="SUPPLY1" gate="GND" x="22.86" y="93.98"/>
-<instance part="U2" gate="G$1" x="55.88" y="0" rot="R270"/>
-<instance part="P7" gate="G$1" x="78.74" y="-43.18" rot="R90"/>
-<instance part="P6" gate="G$1" x="63.5" y="-43.18" rot="R90"/>
-<instance part="P5" gate="G$1" x="45.72" y="-43.18" rot="R90"/>
-<instance part="P4" gate="G$1" x="30.48" y="-43.18" rot="R90"/>
+<instance part="U2" gate="G$1" x="55.88" y="0" rot="R270">
+<attribute name="PARTNO" x="55.88" y="0" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="P7" gate="G$1" x="78.74" y="-43.18" rot="R90">
+<attribute name="BOM" x="78.74" y="-43.18" size="1.778" layer="96" rot="R270" display="off"/>
+</instance>
+<instance part="P6" gate="G$1" x="63.5" y="-43.18" rot="R90">
+<attribute name="BOM" x="63.5" y="-43.18" size="1.778" layer="96" rot="R270" display="off"/>
+</instance>
+<instance part="P5" gate="G$1" x="45.72" y="-43.18" rot="R90">
+<attribute name="BOM" x="45.72" y="-43.18" size="1.778" layer="96" rot="R270" display="off"/>
+</instance>
+<instance part="P4" gate="G$1" x="30.48" y="-43.18" rot="R90">
+<attribute name="BOM" x="30.48" y="-43.18" size="1.778" layer="96" rot="R270" display="off"/>
+</instance>
 <instance part="SUPPLY3" gate="GND" x="66.04" y="40.64"/>
 <instance part="SUPPLY4" gate="GND" x="38.1" y="10.16"/>
 <instance part="SUPPLY5" gate="GND" x="-45.72" y="43.18"/>
-<instance part="R1" gate="G$1" x="-35.56" y="60.96" rot="R90"/>
+<instance part="R1" gate="G$1" x="-35.56" y="60.96" rot="R90">
+<attribute name="PARTNO" x="-35.56" y="60.96" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="SUPPLY2" gate="GND" x="88.9" y="-38.1"/>
-<instance part="C2" gate="G$1" x="-15.24" y="66.04"/>
-<instance part="C1" gate="G$1" x="-7.62" y="66.04"/>
-<instance part="U3" gate="G$1" x="109.22" y="33.02"/>
+<instance part="C2" gate="G$1" x="-15.24" y="66.04">
+<attribute name="PARTNO" x="-15.24" y="66.04" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="C1" gate="G$1" x="-7.62" y="66.04">
+<attribute name="PARTNO" x="-7.62" y="66.04" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="U3" gate="G$1" x="109.22" y="33.02">
+<attribute name="PARTNO" x="109.22" y="33.02" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="SUPPLY6" gate="GND" x="121.92" y="0"/>
-<instance part="C3" gate="G$1" x="93.98" y="12.7"/>
+<instance part="C3" gate="G$1" x="93.98" y="12.7">
+<attribute name="PARTNO" x="93.98" y="12.7" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="P+1" gate="1" x="-25.4" y="86.36"/>
 <instance part="P+2" gate="1" x="76.2" y="-12.7"/>
 <instance part="P+3" gate="1" x="45.72" y="78.74"/>
@@ -13114,7 +13200,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="P+5" gate="1" x="40.64" y="48.26"/>
 <instance part="P+6" gate="1" x="66.04" y="17.78"/>
 <instance part="P+7" gate="1" x="93.98" y="45.72"/>
-<instance part="C4" gate="G$1" x="-25.4" y="66.04"/>
+<instance part="C4" gate="G$1" x="-25.4" y="66.04">
+<attribute name="PARTNO" x="-25.4" y="66.04" size="1.778" layer="96" display="off"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -13576,4 +13664,10 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </sheets>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
