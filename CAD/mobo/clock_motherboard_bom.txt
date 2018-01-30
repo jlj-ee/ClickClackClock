@@ -1,0 +1,44 @@
+Part	Value	Attributes	Package	Description	Part Num	Mfg Name	VID	Vendor Part Num	Description	Pkg Code	XREF
+BAT	CR1220		CR1220-THM	CR1216/CR1220/CR1225 12mm 3V lithium coin cell	3001	Keystone Electronics	ME	534-3001	HOLDER BATTERY COIN 12MM DIA THM	*	REF14
+BATTERY	CH23-1220LF		CH23-1220LF	Battary Holder, DIP, 12mm	CR1220	FDK America	ME	658-CR1220	BATTERY LITHIUM 3V COIN 12.5MM	*	REF15
+C1	0.1uF		C025-025X050	CAPACITOR, American symbol	21RZ310-RC	Xicon	ME	21RZ310-RC	Multilayer Ceramic Capacitors MLCC - Leaded .1uF 50volts Z5U 20% 2.5mm L/S	*	REF5
+C2	0.1uF		C025-025X050	CAPACITOR, American symbol	21RZ310-RC	Xicon	ME	21RZ310-RC	Multilayer Ceramic Capacitors MLCC - Leaded .1uF 50volts Z5U 20% 2.5mm L/S	*	REF5
+C3	0.1uF		C025-025X050	CAPACITOR, American symbol	21RZ310-RC	Xicon	ME	21RZ310-RC	Multilayer Ceramic Capacitors MLCC - Leaded .1uF 50volts Z5U 20% 2.5mm L/S	*	REF5
+C4	0.1uF		C025-025X050	CAPACITOR, American symbol	21RZ310-RC	Xicon	ME	21RZ310-RC	Multilayer Ceramic Capacitors MLCC - Leaded .1uF 50volts Z5U 20% 2.5mm L/S	*	REF5
+C5	22pF		C025-025X050	CAPACITOR, American symbol	K220J15C0GF5TL2	Vishay / BC Components	ME	594-K220J15C0GF5TL2	Multilayer Ceramic Capacitors MLCC - Leaded 22pF 50volts 5% C0G 2.5mm LS	*	REF17
+C6	22pF		C025-025X050	CAPACITOR, American symbol	K220J15C0GF5TL2	Vishay / BC Components	ME	594-K220J15C0GF5TL2	Multilayer Ceramic Capacitors MLCC - Leaded 22pF 50volts 5% C0G 2.5mm LS	*	REF17
+C7	0.1uF		C025-025X050	CAPACITOR, American symbol	21RZ310-RC	Xicon	ME	21RZ310-RC	Multilayer Ceramic Capacitors MLCC - Leaded .1uF 50volts Z5U 20% 2.5mm L/S	*	REF5
+C8	22uF/25V		E2,5-6	POLARIZED CAPACITOR, American symbol	EEU-FR1H220B	Panasonic	ME	667-EEU-FR1H220B	CAP ALUM 22UF 20% 50V RADIAL	*	REF19
+C9	50uF/6V		E2,5-6	POLARIZED CAPACITOR, American symbol	ECA-1CM470I	Panasonic	ME	667-ECA-1CM470I	CAP ALUM 47UF 20% 16V RADIAL	*	REF20
+C10	50uF/6V		E2,5-6	POLARIZED CAPACITOR, American symbol	ECA-1CM470I	Panasonic	ME	667-ECA-1CM470I	CAP ALUM 47UF 20% 16V RADIAL	*	REF20
+D1	1N4001		DO41-10	DIODE	1N4001-TP	Micro Commercial Co.	ME	833-1N4001-TP	DIODE GEN PURP 50V 1A DO41	*	REF21
+D2	RED		LED3MM	LED	WP7113SRD/D	Kingbright	ME	604-WP7113SRD/D	Standard LEDs - Through Hole RED DIFFUSED	*	REF8
+D3	YELLOW		LED3MM	LED	WP7113SYD	Kingbright	ME	604-WP7113SYD	Standard LEDs - Through Hole YELLOW DIFFUSED	*	REF16
+IC1	LM1086CT-5.0		78XXS	VOLTAGE REGULATOR	LM1086CT-5.0/NOPB	Texas Instruments	ME	926-LM1086CT50NOPB	IC REG LINEAR 5.0V 1.5A TO220-3	*	REF12
+IC2	LM1086CT-3.3		78XXS	VOLTAGE REGULATOR	LM1086CT-3.3/NOPB	Texas Instruments	ME	926-LM1086CT-3.3NOPB	IC REG LINEAR 3.3V 1.5A TO220-3	*	REF13
+J1	2.1MMJACK		PJ-102A		PJ-102AH	CUI Inc.	ME	490-PJ-102AH	CONN PWR JACK 2X5.5MM SOLDER	*	REF27
+J2	PWR_SEL		JUMP	JUMPER header	382811-8	TE Connectivity	ME	571-3828118	SHUNT, ECON, PHBR 5AU, BLACK	*	REF31
+JP2	FTDI_DEVICE		FTDI_DEVICE_SIDE	Connector which mates to FTDI basic or FTDI cable.	68000-406HLF	Amphenol FCI	ME	649-68000-406HLF	CONN HEADER 6 POS .100	*	REF30
+JP3	PWR_OUT		SCREWTERMINAL-3.5MM-3	Header 3	1546551-3	TE Connectivity	ME	571-1546551-3	Fixed Terminal Blocks 3P,STRAIGHT SIDE ENTRY,3.5MM	*	REF3
+JP4	PWR_SEL		1X03	PIN HEADER	68001-403HLF	Amphenol FCI	ME	649-68001-403HLF	CONN HEADER 3 POS .100	*	REF29
+R1	4.7 K		0207/5V	RESISTOR, American symbol	CFR-25JB-52-4K7	Yageo	ME	603-CFR-25JB-52-4K7	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 4.7kohm 1/4W 5%	*	REF24
+R2	4.7 K		0207/5V	RESISTOR, American symbol	CFR-25JB-52-4K7	Yageo	ME	603-CFR-25JB-52-4K7	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 4.7kohm 1/4W 5%	*	REF24
+R3	1.0 K		0207/5V	RESISTOR, American symbol	CFR-25JB-52-1K	Yageo	ME	603-CFR-25JB-1K0	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 1kohm 1/4W 5%	*	REF23
+R4	1.0 K		0207/5V	RESISTOR, American symbol	CFR-25JB-52-1K	Yageo	ME	603-CFR-25JB-1K0	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 1kohm 1/4W 5%	*	REF23
+R5	10K		0207/5V	RESISTOR, American symbol	CFR-25JB-52-10K	Yageo	ME	603-CFR-25JB-52-10K	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 10kohm 1/4W 5%	*	REF25
+R6	4.7 K		0207/5V	RESISTOR, American symbol	CFR-25JB-52-4K7	Yageo	ME	603-CFR-25JB-52-4K7	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 4.7kohm 1/4W 5%	*	REF24
+RDIV	10K		0207/5V	RESISTOR, American symbol	CFR-25JB-52-10K	Yageo	ME	603-CFR-25JB-52-10K	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 10kohm 1/4W 5%	*	REF25
+S1	RESET		B3F-10XX	OMRON SWITCH	B3F-1000	Omron Electronics	ME	653-B3F-1000	Tactile Switches 6X6 Flat 4.3mm Btn Force 100g w/o Grd	*	REF28
+SOCKET	ZIFSOCKET-28-3ZIFFSOCKET-28-3		DIL28-3-ZIF_SOCKET	Lever-action ZIF socket for 28-pin ICs	4828-3004-CP	3M	ME	517-4828-3004-CP	IC & Component Sockets SOCKET 28POS .3"" IC OPEN FRAME	*	REF10
+STANDOFF1	STAND-OFF		STAND-OFF	#4 Stand Off	2200	Keystone Electronics	ME	534-2201	Standoffs & Spacers HEX .250X.250 ALUM	*	REF33
+STANDOFF2	STAND-OFF		STAND-OFF	#4 Stand Off	2200	Keystone Electronics	ME	534-2201	Standoffs & Spacers HEX .250X.250 ALUM	*	REF33
+STANDOFF3	STAND-OFF		STAND-OFF	#4 Stand Off	2200	Keystone Electronics	ME	534-2201	Standoffs & Spacers HEX .250X.250 ALUM	*	REF33
+STANDOFF4	STAND-OFF		STAND-OFF	#4 Stand Off	2200	Keystone Electronics	ME	534-2201	Standoffs & Spacers HEX .250X.250 ALUM	*	REF33
+STANDOFF5	STAND-OFF		STAND-OFF	#4 Stand Off	9900	Keystone Electronics	ME	534-9900	Screws & Fasteners 4-40 X 1/4 SCREW	*	REF32
+STANDOFF6	STAND-OFF		STAND-OFF	#4 Stand Off	9900	Keystone Electronics	ME	534-9900	Screws & Fasteners 4-40 X 1/4 SCREW	*	REF32
+STANDOFF7	STAND-OFF		STAND-OFF	#4 Stand Off	9900	Keystone Electronics	ME	534-9900	Screws & Fasteners 4-40 X 1/4 SCREW	*	REF32
+STANDOFF8	STAND-OFF		STAND-OFF	#4 Stand Off	9900	Keystone Electronics	ME	534-9900	Screws & Fasteners 4-40 X 1/4 SCREW	*	REF32
+U1	ATMEGA328P_PDIP		DIL28-3	uC used in the Arduino	ATMEGA328P-PU	Microchip Technology / Atmel	ME	556-ATMEGA328P-PU	8-bit Microcontrollers - MCU 32KB In-system Flash 20MHz 1.8V-5.5V	*	REF9
+U2	DS1307		DIL08	DS1307	DS1307+	Maxim Integrated	ME	700-DS1307	Real Time Clock 64x8 Serial I2C RTC	*	REF11
+Y1	16MHz		HC49US	Various standard crystals. Proven footprints.	HC49US-16.000MABJ-UB	Citizen FineDevice	ME	695-HC49US-16-U	Crystals 16MHz 18pF HC49S THROUGH HOLE	*	REF26
+Y2	32.768		TC38H	CRYSTAL	AB38T-32.768KHZ	Abracon LLC	ME	815-AB38T-32.768KHZ	CRYSTAL 32.7680KHZ 12.5PF T/H	*	REF22

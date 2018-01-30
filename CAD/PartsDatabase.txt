@@ -7,3 +7,28 @@ CFR-25JR-52-470R	Yageo	ME	603-CFR-25JR-52470R	Carbon Film Resistors - Through Ho
 CD74HC4050E	Texas Instruments	ME	595-CD74HC4050E	Buffers & Line Drivers Hex Non-Inverting	
 MIC5891YN	Microchip Technology / Micrel	ME	998-MIC5891YN	Latches 8-Bit Serial Input Latched Driver	
 WP7113SRD/D	Kingbright	ME	604-WP7113SRD/D	Standard LEDs - Through Hole RED DIFFUSED	
+ATMEGA328P-PU	Microchip Technology / Atmel	ME	556-ATMEGA328P-PU	8-bit Microcontrollers - MCU 32KB In-system Flash 20MHz 1.8V-5.5V	
+4828-3004-CP	3M	ME	517-4828-3004-CP	"IC & Component Sockets SOCKET 28POS .3"" IC OPEN FRAME"	
+DS1307+	Maxim Integrated	ME	700-DS1307	Real Time Clock 64x8 Serial I2C RTC	
+LM1086CT-5.0/NOPB	Texas Instruments	ME	926-LM1086CT50NOPB	IC REG LINEAR 5.0V 1.5A TO220-3	
+LM1086CT-3.3/NOPB	Texas Instruments	ME	926-LM1086CT-3.3NOPB	IC REG LINEAR 3.3V 1.5A TO220-3	
+3001	Keystone Electronics	ME	534-3001	HOLDER BATTERY COIN 12MM DIA THM	
+CR1220	FDK America	ME	658-CR1220	BATTERY LITHIUM 3V COIN 12.5MM	
+WP7113SYD	Kingbright	ME	604-WP7113SYD	Standard LEDs - Through Hole YELLOW DIFFUSED	
+K220J15C0GF5TL2	Vishay / BC Components	ME	594-K220J15C0GF5TL2	Multilayer Ceramic Capacitors MLCC - Leaded 22pF 50volts 5% C0G 2.5mm LS	
+K104K15X7RF53L2	Vishay / BC Components	ME	594-K104K15X7RF53L2	Multilayer Ceramic Capacitors MLCC - Leaded 0.1uF 50volts 10% X7R 2.5mm LS	
+EEU-FR1H220B	Panasonic	ME	667-EEU-FR1H220B	CAP ALUM 22UF 20% 50V RADIAL	
+ECA-1CM470I	Panasonic	ME	667-ECA-1CM470I	CAP ALUM 47UF 20% 16V RADIAL	
+1N4001-TP	Micro Commercial Co.	ME	833-1N4001-TP	DIODE GEN PURP 50V 1A DO41	
+AB38T-32.768KHZ	Abracon LLC	ME	815-AB38T-32.768KHZ	CRYSTAL 32.7680KHZ 12.5PF T/H	
+CFR-25JB-52-1K	Yageo	ME	603-CFR-25JB-1K0	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 1kohm 1/4W 5%	
+CFR-25JB-52-4K7	Yageo	ME	603-CFR-25JB-52-4K7	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 4.7kohm 1/4W 5%	
+CFR-25JB-52-10K	Yageo	ME	603-CFR-25JB-52-10K	Carbon Film Resistors - Through Hole Carbon Film Resistors - Through Hole 10kohm 1/4W 5%	
+HC49US-16.000MABJ-UB	Citizen FineDevice	ME	695-HC49US-16-U	Crystals 16MHz 18pF HC49S THROUGH HOLE	
+PJ-102AH	CUI Inc.	ME	490-PJ-102AH	CONN PWR JACK 2X5.5MM SOLDER	
+B3F-1000	Omron Electronics	ME	653-B3F-1000	Tactile Switches 6X6 Flat 4.3mm Btn Force 100g w/o Grd	
+68001-403HLF	Amphenol FCI	ME	649-68001-403HLF	CONN HEADER 3 POS .100	
+68000-406HLF	Amphenol FCI	ME	649-68000-406HLF	CONN HEADER 6 POS .100	
+382811-8	TE Connectivity	ME	571-3828118	"SHUNT, ECON, PHBR 5AU, BLACK"	
+9900	Keystone Electronics	ME	534-9900	Screws & Fasteners 4-40 X 1/4 SCREW	
+2200	Keystone Electronics	ME	534-2201	Standoffs & Spacers HEX .250X.250 ALUM	
