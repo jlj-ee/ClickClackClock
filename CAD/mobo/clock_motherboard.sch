@@ -16577,6 +16577,54 @@ Used on FTDI breakouts</description>
 <rectangle x1="2.286" y1="-0.254" x2="2.794" y2="0.254" layer="51"/>
 <rectangle x1="-0.254" y1="-0.254" x2="0.254" y2="0.254" layer="51"/>
 </package>
+<package name="DIL28-3-ZIF_SOCKET">
+<wire x1="-17.78" y1="-1.27" x2="-17.78" y2="-3.048" width="0.2032" layer="21"/>
+<wire x1="-17.78" y1="-1.27" x2="-17.78" y2="1.27" width="0.2032" layer="21" curve="180"/>
+<wire x1="17.78" y1="-3.048" x2="17.78" y2="3.048" width="0.2032" layer="21"/>
+<wire x1="-17.78" y1="3.048" x2="-17.78" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="-17.78" y1="3.048" x2="-17.526" y2="3.048" width="0.2032" layer="21"/>
+<wire x1="-17.78" y1="-3.048" x2="-17.526" y2="-3.048" width="0.2032" layer="21"/>
+<wire x1="17.78" y1="-3.048" x2="17.526" y2="-3.048" width="0.2032" layer="21"/>
+<wire x1="17.78" y1="3.048" x2="17.526" y2="3.048" width="0.2032" layer="21"/>
+<wire x1="-26.111" y1="-8" x2="25.889" y2="-8" width="0.127" layer="51"/>
+<wire x1="25.889" y1="-8" x2="25.889" y2="8" width="0.127" layer="51"/>
+<wire x1="25.889" y1="8" x2="-26.111" y2="8" width="0.127" layer="51"/>
+<wire x1="-26.111" y1="8" x2="-26.111" y2="-8" width="0.127" layer="51"/>
+<wire x1="-21.59" y1="-5.08" x2="-36.83" y2="-5.08" width="0.254" layer="51" style="shortdash"/>
+<wire x1="-36.83" y1="-5.08" x2="-36.83" y2="-7.62" width="0.254" layer="51" style="shortdash"/>
+<wire x1="-36.83" y1="-7.62" x2="-21.59" y2="-7.62" width="0.254" layer="51" style="shortdash"/>
+<wire x1="-21.59" y1="-7.62" x2="-21.59" y2="-5.08" width="0.254" layer="51" style="shortdash"/>
+<pad name="1" x="-16.51" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="2" x="-13.97" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="3" x="-11.43" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="4" x="-8.89" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="5" x="-6.35" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="6" x="-3.81" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="7" x="-1.27" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="8" x="1.27" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="9" x="3.81" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="10" x="6.35" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="11" x="8.89" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="12" x="11.43" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="13" x="13.97" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="14" x="16.51" y="-3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="15" x="16.51" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="16" x="13.97" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="17" x="11.43" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="18" x="8.89" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="19" x="6.35" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="20" x="3.81" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="21" x="1.27" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="22" x="-1.27" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="23" x="-3.81" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="24" x="-6.35" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="25" x="-8.89" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="26" x="-11.43" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="27" x="-13.97" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="28" x="-16.51" y="3.81" drill="1.016" diameter="1.8796" rot="R90"/>
+<text x="-15.24" y="0" size="0.6096" layer="25" ratio="10">&gt;NAME</text>
+<text x="-15.24" y="-1.27" size="0.6096" layer="27" ratio="10">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="M03">
@@ -16612,6 +16660,43 @@ Used on FTDI breakouts</description>
 <pin name="4" x="5.08" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="5" x="5.08" y="5.08" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="6" x="5.08" y="7.62" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
+</symbol>
+<symbol name="DIL-28-3">
+<wire x1="0" y1="0" x2="22.86" y2="0" width="0.254" layer="94"/>
+<wire x1="22.86" y1="0" x2="22.86" y2="76.2" width="0.254" layer="94"/>
+<wire x1="22.86" y1="76.2" x2="15.24" y2="76.2" width="0.254" layer="94"/>
+<wire x1="15.24" y1="76.2" x2="7.62" y2="76.2" width="0.254" layer="94"/>
+<wire x1="7.62" y1="76.2" x2="0" y2="76.2" width="0.254" layer="94"/>
+<wire x1="0" y1="76.2" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="15.24" y1="76.2" x2="7.62" y2="76.2" width="0.254" layer="94" curve="-180"/>
+<pin name="P$1" x="-5.08" y="71.12" length="middle"/>
+<pin name="P$2" x="-5.08" y="66.04" length="middle"/>
+<pin name="P$3" x="-5.08" y="60.96" length="middle"/>
+<pin name="P$4" x="-5.08" y="55.88" length="middle"/>
+<pin name="P$5" x="-5.08" y="50.8" length="middle"/>
+<pin name="P$6" x="-5.08" y="45.72" length="middle"/>
+<pin name="P$7" x="-5.08" y="40.64" length="middle"/>
+<pin name="P$8" x="-5.08" y="35.56" length="middle"/>
+<pin name="P$9" x="-5.08" y="30.48" length="middle"/>
+<pin name="P$10" x="-5.08" y="25.4" length="middle"/>
+<pin name="P$11" x="-5.08" y="20.32" length="middle"/>
+<pin name="P$12" x="-5.08" y="15.24" length="middle"/>
+<pin name="P$13" x="-5.08" y="10.16" length="middle"/>
+<pin name="P$14" x="-5.08" y="5.08" length="middle"/>
+<pin name="P$15" x="27.94" y="5.08" length="middle" rot="R180"/>
+<pin name="P$16" x="27.94" y="10.16" length="middle" rot="R180"/>
+<pin name="P$17" x="27.94" y="15.24" length="middle" rot="R180"/>
+<pin name="P$18" x="27.94" y="20.32" length="middle" rot="R180"/>
+<pin name="P$19" x="27.94" y="25.4" length="middle" rot="R180"/>
+<pin name="P$20" x="27.94" y="30.48" length="middle" rot="R180"/>
+<pin name="P$21" x="27.94" y="35.56" length="middle" rot="R180"/>
+<pin name="P$22" x="27.94" y="40.64" length="middle" rot="R180"/>
+<pin name="P$23" x="27.94" y="45.72" length="middle" rot="R180"/>
+<pin name="P$24" x="27.94" y="50.8" length="middle" rot="R180"/>
+<pin name="P$25" x="27.94" y="55.88" length="middle" rot="R180"/>
+<pin name="P$26" x="27.94" y="60.96" length="middle" rot="R180"/>
+<pin name="P$27" x="27.94" y="66.04" length="middle" rot="R180"/>
+<pin name="P$28" x="27.94" y="71.12" length="middle" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -17209,10 +17294,256 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 </device>
 </devices>
 </deviceset>
+<deviceset name="ZIFSOCKET-28-3">
+<description>Lever-action ZIF socket for 28-pin ICs</description>
+<gates>
+<gate name="G$1" symbol="DIL-28-3" x="-10.16" y="-38.1"/>
+</gates>
+<devices>
+<device name="ZIFFSOCKET-28-3" package="DIL28-3-ZIF_SOCKET">
+<connects>
+<connect gate="G$1" pin="P$1" pad="1"/>
+<connect gate="G$1" pin="P$10" pad="10"/>
+<connect gate="G$1" pin="P$11" pad="11"/>
+<connect gate="G$1" pin="P$12" pad="12"/>
+<connect gate="G$1" pin="P$13" pad="13"/>
+<connect gate="G$1" pin="P$14" pad="14"/>
+<connect gate="G$1" pin="P$15" pad="15"/>
+<connect gate="G$1" pin="P$16" pad="16"/>
+<connect gate="G$1" pin="P$17" pad="17"/>
+<connect gate="G$1" pin="P$18" pad="18"/>
+<connect gate="G$1" pin="P$19" pad="19"/>
+<connect gate="G$1" pin="P$2" pad="2"/>
+<connect gate="G$1" pin="P$20" pad="20"/>
+<connect gate="G$1" pin="P$21" pad="21"/>
+<connect gate="G$1" pin="P$22" pad="22"/>
+<connect gate="G$1" pin="P$23" pad="23"/>
+<connect gate="G$1" pin="P$24" pad="24"/>
+<connect gate="G$1" pin="P$25" pad="25"/>
+<connect gate="G$1" pin="P$26" pad="26"/>
+<connect gate="G$1" pin="P$27" pad="27"/>
+<connect gate="G$1" pin="P$28" pad="28"/>
+<connect gate="G$1" pin="P$3" pad="3"/>
+<connect gate="G$1" pin="P$4" pad="4"/>
+<connect gate="G$1" pin="P$5" pad="5"/>
+<connect gate="G$1" pin="P$6" pad="6"/>
+<connect gate="G$1" pin="P$7" pad="7"/>
+<connect gate="G$1" pin="P$8" pad="8"/>
+<connect gate="G$1" pin="P$9" pad="9"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="jumper">
+<description>&lt;b&gt;Jumpers&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="JUMP">
+<description>&lt;b&gt;JUMPER CAB&lt;/b&gt;</description>
+<wire x1="-1.27" y1="2.54" x2="1.27" y2="2.54" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-2.54" x2="-1.27" y2="-2.54" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-2.54" x2="-1.27" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-0.635" x2="-0.635" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-0.635" x2="-1.27" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="0.635" x2="-0.635" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="0.635" x2="-1.27" y2="2.54" width="0.1524" layer="21"/>
+<wire x1="-0.635" y1="-0.635" x2="-0.635" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="-0.635" y1="-0.635" x2="0.635" y2="-0.635" width="0.1524" layer="51"/>
+<wire x1="-0.635" y1="0.635" x2="0.635" y2="0.635" width="0.1524" layer="51"/>
+<wire x1="1.27" y1="2.54" x2="1.27" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="-0.635" x2="0.635" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="-0.635" x2="1.27" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-0.635" x2="1.27" y2="-2.54" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="0.635" x2="1.27" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="0.635" x2="1.27" y2="-0.635" width="0.1524" layer="21"/>
+<text x="-0.2" y="0.6" size="0.1" layer="25">&gt;NAME</text>
+<text x="-0.3" y="-0.7" size="0.1" layer="27">&gt;VALUE</text>
+</package>
+</packages>
+<symbols>
+<symbol name="JUMP">
+<wire x1="-2.54" y1="0.762" x2="-2.54" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="2.54" x2="0" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="0.762" width="0.1524" layer="94"/>
+<wire x1="-3.302" y1="0" x2="-1.778" y2="0" width="0.254" layer="94" curve="-180" cap="flat"/>
+<wire x1="-0.762" y1="0" x2="0.762" y2="0" width="0.254" layer="94" curve="-180" cap="flat"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="JUMPER" prefix="J" uservalue="yes">
+<description>&lt;b&gt;JUMPER&lt;/b&gt; header</description>
+<gates>
+<gate name="B1" symbol="JUMP" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="JUMP">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="battery">
+<description>&lt;b&gt;Lithium Batteries and NC Accus&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="CH23-1220LF">
+<description>&lt;b&gt;Battary Holder, DIP, 12mm&lt;/b&gt;&lt;p&gt;
+multicomp PART NO. CH-1220LF&lt;br&gt;
+Source: &lt;a href="http://www.farnell.com/datasheets/1505861.pdf"&gt; Data sheet &lt;/a&gt;</description>
+<circle x="5.6" y="3.2" radius="0.5" width="0.01" layer="49"/>
+<circle x="-5.6" y="3.2" radius="0.5" width="0.01" layer="49"/>
+<circle x="0" y="-6.5" radius="0.5" width="0.01" layer="49"/>
+<wire x1="-3.3673625" y1="-2.525521875" x2="-3.3673625" y2="3.214303125" width="0.2" layer="21"/>
+<wire x1="-3.3673625" y1="3.214303125" x2="-2.602053125" y2="3.44389375" width="0.2" layer="21" curve="-146.601752"/>
+<wire x1="-2.602053125" y1="3.44389375" x2="-1.53061875" y2="2.14286875" width="0.2" layer="21"/>
+<wire x1="-1.53061875" y1="2.14286875" x2="-1.53061875" y2="-0.918371875" width="0.2" layer="21"/>
+<wire x1="-1.53061875" y1="-0.918371875" x2="-1.147965625" y2="-0.918371875" width="0.2" layer="21"/>
+<wire x1="-1.147965625" y1="-0.918371875" x2="-1.147965625" y2="0.07653125" width="0.2" layer="51"/>
+<wire x1="-1.53061875" y1="-0.918371875" x2="-3.290834375" y2="-0.918371875" width="0.2" layer="21"/>
+<wire x1="-3.3673625" y1="-2.525521875" x2="3.3673625" y2="-2.525521875" width="0.2" layer="21"/>
+<wire x1="3.290834375" y1="-4.515328125" x2="-4.974515625" y2="-5.96941875" width="0.2" layer="21"/>
+<wire x1="-4.974515625" y1="-5.96941875" x2="-7.040853125" y2="-2.678584375" width="0.2" layer="51"/>
+<wire x1="-0.675" y1="-5.1375" x2="-0.8625" y2="-4.3" width="0.2" layer="21"/>
+<wire x1="-0.8625" y1="-4.3" x2="0.5" y2="-4.0375" width="0.2" layer="21"/>
+<wire x1="0.5" y1="-4.0375" x2="0.6875" y2="-4.8875" width="0.2" layer="21"/>
+<wire x1="-5.5867625" y1="-5.127578125" x2="-6.658196875" y2="-5.739825" width="0.2" layer="21"/>
+<wire x1="-6.658196875" y1="-5.739825" x2="-8.265346875" y2="-3.290834375" width="0.2" layer="21"/>
+<wire x1="-8.265346875" y1="-3.290834375" x2="-7" y2="-2.5" width="0.2" layer="21"/>
+<wire x1="-0.841840625" y1="-1.913275" x2="0.765309375" y2="-1.913275" width="0.2" layer="21"/>
+<wire x1="3.3673625" y1="-2.525521875" x2="3.3673625" y2="3.214303125" width="0.2" layer="21"/>
+<wire x1="3.3673625" y1="3.214303125" x2="2.602053125" y2="3.44389375" width="0.2" layer="21" curve="146.601752"/>
+<wire x1="2.602053125" y1="3.44389375" x2="1.53061875" y2="2.14286875" width="0.2" layer="21"/>
+<wire x1="1.53061875" y1="2.14286875" x2="1.53061875" y2="-0.918371875" width="0.2" layer="21"/>
+<wire x1="1.53061875" y1="-0.918371875" x2="1.147965625" y2="-0.918371875" width="0.2" layer="21"/>
+<wire x1="1.147965625" y1="-0.918371875" x2="1.147965625" y2="0.07653125" width="0.2" layer="51"/>
+<wire x1="1.147965625" y1="0.07653125" x2="-1.147965625" y2="0.07653125" width="0.2" layer="51"/>
+<wire x1="1.53061875" y1="-0.918371875" x2="3.290834375" y2="-0.918371875" width="0.2" layer="21"/>
+<pad name="+" x="-6.425" y="-3.8625" drill="1" diameter="1.6"/>
+<circle x="0" y="0" radius="7.4" width="0.2" layer="51"/>
+<wire x1="-5.325" y1="-5.0625" x2="-4.75" y2="-4.5875" width="0.2" layer="21"/>
+<wire x1="5.4125" y1="-4.9875" x2="4.8625" y2="-4.4625" width="0.2" layer="21"/>
+<wire x1="4.8625" y1="-4.4625" x2="5.425" y2="3.75" width="0.2" layer="21" curve="77.409005"/>
+<wire x1="3.825" y1="5.3875" x2="-3.8625" y2="5.35" width="0.2" layer="21" curve="71.055532"/>
+<wire x1="-5.4125" y1="3.7875" x2="-6.15" y2="-2.4" width="0.2" layer="21" curve="56.229166"/>
+<wire x1="-5.8375" y1="4.375" x2="-4.575" y2="3.1125" width="0.2" layer="21"/>
+<wire x1="-4.575" y1="3.1125" x2="-3.1375" y2="4.575" width="0.2" layer="21"/>
+<wire x1="-3.1375" y1="4.575" x2="-4.4375" y2="5.875" width="0.2" layer="21"/>
+<wire x1="4.425" y1="5.825" x2="3.1375" y2="4.5125" width="0.2" layer="21"/>
+<wire x1="3.1375" y1="4.5125" x2="4.575" y2="3.1" width="0.2" layer="21"/>
+<wire x1="4.575" y1="3.1" x2="5.875" y2="4.4" width="0.2" layer="21"/>
+<wire x1="-4.974515625" y1="-5.96941875" x2="-5.6625" y2="-4.875" width="0.2" layer="21"/>
+<pad name="-" x="0" y="0" drill="1" diameter="1.6"/>
+<wire x1="-5.4125" y1="3.7875" x2="-4.75" y2="-4.5875" width="0.2" layer="51" curve="78.780699"/>
+<wire x1="-6.925" y1="-2.6125" x2="-5.35" y2="-5.1125" width="0.2" layer="21" curve="-336.965085"/>
+<text x="-5.75" y="8" size="1.27" layer="25" font="vector">&gt;NAME</text>
+<text x="-5.25" y="-9.5" size="1.27" layer="27" font="vector">&gt;VALUE</text>
+<wire x1="3.5" y1="-6.5" x2="-3.5" y2="-6.5" width="0.2" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="1V2">
+<wire x1="-0.635" y1="0.635" x2="-0.635" y2="0" width="0.4064" layer="94"/>
+<wire x1="-2.54" y1="0" x2="-0.635" y2="0" width="0.1524" layer="94"/>
+<wire x1="-0.635" y1="0" x2="-0.635" y2="-0.635" width="0.4064" layer="94"/>
+<wire x1="0.635" y1="2.54" x2="0.635" y2="0" width="0.4064" layer="94"/>
+<wire x1="0.635" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
+<wire x1="0.635" y1="0" x2="0.635" y2="-2.54" width="0.4064" layer="94"/>
+<text x="-1.27" y="3.175" size="1.778" layer="95">&gt;NAME</text>
+<text x="-1.27" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="+" x="5.08" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="-" x="-5.08" y="0" visible="pad" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="CH23-1220LF" prefix="G">
+<description>&lt;b&gt;Battary Holder, DIP, 12mm&lt;/b&gt;&lt;p&gt;
+multicomp PART NO. CH-1220LF&lt;br&gt;
+Source: &lt;a href="http://www.farnell.com/datasheets/1505861.pdf"&gt; Data sheet &lt;/a&gt;</description>
+<gates>
+<gate name="G1" symbol="1V2" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CH23-1220LF">
+<connects>
+<connect gate="G1" pin="+" pad="+"/>
+<connect gate="G1" pin="-" pad="-"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="SparkFun-Electromechanical">
+<description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
+In this library you'll find anything that moves- switches, relays, buttons, potentiometers. Also, anything that goes on a board but isn't electrical in nature- screws, standoffs, etc.&lt;br&gt;&lt;br&gt;
+We've spent an enormous amount of time creating and checking these footprints and parts, but it is the end user's responsibility to ensure correctness and suitablity for a given componet or application. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
+&lt;br&gt;&lt;br&gt;
+You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
+<packages>
+<package name="STAND-OFF">
+<description>&lt;b&gt;Stand Off&lt;/b&gt;&lt;p&gt;
+This is the mechanical footprint for a #4 phillips button head screw. Use the keepout ring to avoid running the screw head into surrounding components. SKU : PRT-00447</description>
+<wire x1="0" y1="1.8542" x2="0" y2="-1.8542" width="0.2032" layer="41" curve="-180"/>
+<wire x1="0" y1="-1.8542" x2="0" y2="1.8542" width="0.2032" layer="41" curve="-180"/>
+<wire x1="0" y1="-1.8542" x2="0" y2="1.8542" width="0.2032" layer="42" curve="180"/>
+<wire x1="0" y1="-1.8542" x2="0" y2="1.8542" width="0.2032" layer="42" curve="-180"/>
+<circle x="0" y="0" radius="2.794" width="0.127" layer="39"/>
+<hole x="0" y="0" drill="3.302"/>
+</package>
+<package name="STAND-OFF-TIGHT">
+<description>&lt;b&gt;Stand Off&lt;/b&gt;&lt;p&gt;
+This is the mechanical footprint for a #4 phillips button head screw. Use the keepout ring to avoid running the screw head into surrounding components. SKU : PRT-00447</description>
+<wire x1="0" y1="1.8542" x2="0" y2="-1.8542" width="0.2032" layer="41" curve="-180"/>
+<wire x1="0" y1="-1.8542" x2="0" y2="1.8542" width="0.2032" layer="41" curve="-180"/>
+<wire x1="0" y1="-1.8542" x2="0" y2="1.8542" width="0.2032" layer="42" curve="180"/>
+<wire x1="0" y1="-1.8542" x2="0" y2="1.8542" width="0.2032" layer="42" curve="-180"/>
+<circle x="0" y="0" radius="2.794" width="0.127" layer="39"/>
+<hole x="0" y="0" drill="3.048"/>
+</package>
+</packages>
+<symbols>
+<symbol name="STAND-OFF">
+<circle x="0" y="0" radius="1.27" width="0.254" layer="94"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="STAND-OFF" prefix="STANDOFF">
+<description>&lt;b&gt;#4 Stand Off&lt;/b&gt;&lt;p&gt;
+This is the mechanical footprint for a #4 phillips button head screw. Use the keepout ring to avoid running the screw head into surrounding components. SKU : PRT-00447</description>
+<gates>
+<gate name="G$1" symbol="STAND-OFF" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="STAND-OFF">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="TIGHT" package="STAND-OFF-TIGHT">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </libraries>
 <attributes>
+<attribute name="DATABASE" value="../../PartsDatabase.txt"/>
 </attributes>
 <variantdefs>
 </variantdefs>
@@ -17227,82 +17558,188 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 </class>
 </classes>
 <parts>
-<part name="Y2" library="crystal" deviceset="CRYTAL" device="TC38H" value="32.768"/>
-<part name="U2" library="adafruit" deviceset="DS1307" device=""/>
+<part name="Y2" library="crystal" deviceset="CRYTAL" device="TC38H" value="32.768">
+<attribute name="PARTNO" value="AB38T-32.768KHZ"/>
+</part>
+<part name="U2" library="adafruit" deviceset="DS1307" device="">
+<attribute name="PARTNO" value="DS1307+"/>
+</part>
 <part name="P+13" library="supply1" deviceset="VCC" device=""/>
 <part name="GND16" library="supply1" deviceset="GND" device=""/>
-<part name="BAT" library="adafruit" deviceset="CR1220" device="THM" value="CR1220"/>
+<part name="BAT" library="adafruit" deviceset="CR1220" device="THM" value="CR1220">
+<attribute name="PARTNO" value="3001"/>
+</part>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
 <part name="P+14" library="supply1" deviceset="VCC" device=""/>
 <part name="P+15" library="supply1" deviceset="VCC" device=""/>
-<part name="C1" library="adafruit" deviceset="C-US" device="025-025X050" value="0.1uF"/>
-<part name="C2" library="adafruit" deviceset="C-US" device="025-025X050" value="0.1uF"/>
-<part name="C3" library="adafruit" deviceset="C-US" device="025-025X050" value="0.1uF"/>
+<part name="C1" library="adafruit" deviceset="C-US" device="025-025X050" value="0.1uF">
+<attribute name="PARTNO" value="21RZ310-RC"/>
+</part>
+<part name="C2" library="adafruit" deviceset="C-US" device="025-025X050" value="0.1uF">
+<attribute name="PARTNO" value="21RZ310-RC"/>
+</part>
+<part name="C3" library="adafruit" deviceset="C-US" device="025-025X050" value="0.1uF">
+<attribute name="PARTNO" value="21RZ310-RC"/>
+</part>
 <part name="P+4" library="supply1" deviceset="VCC" device=""/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
-<part name="C4" library="adafruit" deviceset="C-US" device="025-025X050" value="0.1uF"/>
-<part name="U1" library="SparkFun-DigitalIC" deviceset="ATMEGA328P_PDIP" device=""/>
+<part name="C4" library="adafruit" deviceset="C-US" device="025-025X050" value="0.1uF">
+<attribute name="PARTNO" value="21RZ310-RC"/>
+</part>
+<part name="U1" library="SparkFun-DigitalIC" deviceset="ATMEGA328P_PDIP" device="">
+<attribute name="PARTNO" value="ATMEGA328P-PU"/>
+</part>
 <part name="P+5" library="supply1" deviceset="VCC" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="P+3" library="supply1" deviceset="VCC" device=""/>
-<part name="Y1" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US"/>
-<part name="C5" library="adafruit" deviceset="C-US" device="025-025X050" value="22pF"/>
-<part name="C6" library="adafruit" deviceset="C-US" device="025-025X050" value="22pF"/>
+<part name="Y1" library="SparkFun-FreqCtrl" deviceset="CRYSTAL" device="HC49US" value="16MHz">
+<attribute name="PARTNO" value="HC49US-16.000MABJ-UB"/>
+</part>
+<part name="C5" library="adafruit" deviceset="C-US" device="025-025X050" value="22pF">
+<attribute name="PARTNO" value="K220J15C0GF5TL2"/>
+</part>
+<part name="C6" library="adafruit" deviceset="C-US" device="025-025X050" value="22pF">
+<attribute name="PARTNO" value="K220J15C0GF5TL2"/>
+</part>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="GND19" library="supply1" deviceset="GND" device=""/>
-<part name="JP1" library="clock_motherboard" deviceset="ARDUINO_R3" device=""/>
-<part name="C7" library="adafruit" deviceset="C-US" device="025-025X050" value="0.1uF"/>
+<part name="JP1" library="clock_motherboard" deviceset="ARDUINO_R3" device="">
+<attribute name="BOM" value="EXCLUDE"/>
+</part>
+<part name="C7" library="adafruit" deviceset="C-US" device="025-025X050" value="0.1uF">
+<attribute name="PARTNO" value="21RZ310-RC"/>
+</part>
 <part name="S1" library="switch-omron" deviceset="10-XX" device="" value="RESET"/>
-<part name="IC2" library="v-reg" deviceset="78XXS" device="" value="LM1086CT-3.3"/>
-<part name="IC1" library="v-reg" deviceset="78XXS" device="" value="LM1086CT-5.0"/>
-<part name="J2" library="minimidi" deviceset="2.1MMJACK" device=""/>
-<part name="D1" library="minimidi" deviceset="1N4004" device="" value="1N4001"/>
+<part name="IC2" library="v-reg" deviceset="78XXS" device="" value="LM1086CT-3.3">
+<attribute name="PARTNO" value="LM1086CT-3.3/NOPB"/>
+</part>
+<part name="IC1" library="v-reg" deviceset="78XXS" device="" value="LM1086CT-5.0">
+<attribute name="PARTNO" value="LM1086CT-5.0/NOPB"/>
+</part>
+<part name="J1" library="minimidi" deviceset="2.1MMJACK" device="">
+<attribute name="PARTNO" value="PJ-102AH"/>
+</part>
+<part name="D1" library="minimidi" deviceset="1N4004" device="" value="1N4001">
+<attribute name="PARTNO" value="1N4001-TP"/>
+</part>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="GND4" library="supply1" deviceset="GND" device=""/>
-<part name="D2" library="minimidi" deviceset="LED" device="3MM"/>
-<part name="R4" library="minimidi" deviceset="R-US_" device="0207/5V" value="1.0 K"/>
+<part name="D2" library="minimidi" deviceset="LED" device="3MM" value="RED">
+<attribute name="PARTNO" value="WP7113SRD/D"/>
+</part>
+<part name="R4" library="minimidi" deviceset="R-US_" device="0207/5V" value="1.0 K">
+<attribute name="PARTNO" value="CFR-25JB-52-1K"/>
+</part>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="P+1" library="supply1" deviceset="VCC" device=""/>
-<part name="C10" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="100/6VuF"/>
-<part name="PWR_SEL" library="pinhead" deviceset="PINHD-1X3" device=""/>
-<part name="C9" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="100/6VuF"/>
-<part name="R1" library="minimidi" deviceset="R-US_" device="0207/5V" value="4.7 K"/>
-<part name="R2" library="minimidi" deviceset="R-US_" device="0207/5V" value="4.7 K"/>
-<part name="R5" library="rcl-ez" deviceset="R-US_" device="0207/5V" value="10K"/>
+<part name="C10" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="50uF/6V">
+<attribute name="PARTNO" value="ECA-1CM470I"/>
+</part>
+<part name="JP4" library="pinhead" deviceset="PINHD-1X3" device="" value="PWR_SEL">
+<attribute name="PARTNO" value="68001-403HLF"/>
+</part>
+<part name="C9" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="50uF/6V">
+<attribute name="PARTNO" value="ECA-1CM470I"/>
+</part>
+<part name="R1" library="minimidi" deviceset="R-US_" device="0207/5V" value="4.7 K">
+<attribute name="PARTNO" value="CFR-25JB-52-4K7"/>
+</part>
+<part name="R2" library="minimidi" deviceset="R-US_" device="0207/5V" value="4.7 K">
+<attribute name="PARTNO" value="CFR-25JB-52-4K7"/>
+</part>
+<part name="R5" library="rcl-ez" deviceset="R-US_" device="0207/5V" value="10K">
+<attribute name="PARTNO" value="CFR-25JB-52-10K"/>
+</part>
 <part name="P+2" library="supply1" deviceset="VCC" device=""/>
-<part name="D3" library="minimidi" deviceset="LED" device="3MM"/>
-<part name="R3" library="minimidi" deviceset="R-US_" device="0207/5V" value="1.0 K"/>
+<part name="D3" library="minimidi" deviceset="LED" device="3MM" value="YELLOW">
+<attribute name="PARTNO" value="WP7113SYD"/>
+</part>
+<part name="R3" library="minimidi" deviceset="R-US_" device="0207/5V" value="1.0 K">
+<attribute name="PARTNO" value="CFR-25JB-52-1K"/>
+</part>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
-<part name="C8" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="22uF/25V"/>
+<part name="C8" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="22uF/25V">
+<attribute name="PARTNO" value="EEU-FR1H220B"/>
+</part>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
-<part name="JP2" library="clock_motherboard" deviceset="FTDI_DEVICE" device=""/>
-<part name="R6" library="minimidi" deviceset="R-US_" device="0207/5V" value="4.7 K"/>
+<part name="JP2" library="clock_motherboard" deviceset="FTDI_DEVICE" device="">
+<attribute name="PARTNO" value="68000-406HLF"/>
+</part>
+<part name="R6" library="minimidi" deviceset="R-US_" device="0207/5V" value="4.7 K">
+<attribute name="PARTNO" value="CFR-25JB-52-4K7"/>
+</part>
 <part name="P+6" library="supply1" deviceset="VCC" device=""/>
-<part name="JP4" library="SparkFun-Connectors" deviceset="M03" device="SCREW"/>
+<part name="JP3" library="SparkFun-Connectors" deviceset="M03" device="SCREW" value="PWR_OUT">
+<attribute name="PARTNO" value="1546551-3"/>
+</part>
 <part name="P+7" library="supply1" deviceset="VCC" device=""/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
-<part name="RDIV" library="rcl-ez" deviceset="R-US_" device="0207/5V" value="10K"/>
+<part name="RDIV" library="rcl-ez" deviceset="R-US_" device="0207/5V" value="10K">
+<attribute name="PARTNO" value="CFR-25JB-52-10K"/>
+</part>
 <part name="P+8" library="supply1" deviceset="VCC" device=""/>
-<part name="GND" library="SparkFun-Connectors" deviceset="M06" device="NO_SILK_FEMALE_PTH"/>
+<part name="GND" library="SparkFun-Connectors" deviceset="M06" device="NO_SILK_FEMALE_PTH">
+<attribute name="BOM" value="EXCLUDE"/>
+</part>
 <part name="GND13" library="supply1" deviceset="GND" device=""/>
+<part name="J2" library="jumper" deviceset="JUMPER" device="" value="PWR_SEL">
+<attribute name="PARTNO" value="382811-8"/>
+</part>
+<part name="BATTERY" library="battery" deviceset="CH23-1220LF" device="">
+<attribute name="PARTNO" value="CR1220"/>
+</part>
+<part name="SOCKET" library="SparkFun-Connectors" deviceset="ZIFSOCKET-28-3" device="ZIFFSOCKET-28-3">
+<attribute name="PARTNO" value="4828-3004-CP"/>
+</part>
+<part name="STANDOFF1" library="SparkFun-Electromechanical" deviceset="STAND-OFF" device="">
+<attribute name="PARTNO" value="2200"/>
+</part>
+<part name="STANDOFF2" library="SparkFun-Electromechanical" deviceset="STAND-OFF" device="">
+<attribute name="PARTNO" value="2200"/>
+</part>
+<part name="STANDOFF3" library="SparkFun-Electromechanical" deviceset="STAND-OFF" device="">
+<attribute name="PARTNO" value="2200"/>
+</part>
+<part name="STANDOFF4" library="SparkFun-Electromechanical" deviceset="STAND-OFF" device="">
+<attribute name="PARTNO" value="2200"/>
+</part>
+<part name="STANDOFF5" library="SparkFun-Electromechanical" deviceset="STAND-OFF" device="">
+<attribute name="PARTNO" value="9900"/>
+</part>
+<part name="STANDOFF6" library="SparkFun-Electromechanical" deviceset="STAND-OFF" device="">
+<attribute name="PARTNO" value="9900"/>
+</part>
+<part name="STANDOFF7" library="SparkFun-Electromechanical" deviceset="STAND-OFF" device="">
+<attribute name="PARTNO" value="9900"/>
+</part>
+<part name="STANDOFF8" library="SparkFun-Electromechanical" deviceset="STAND-OFF" device="">
+<attribute name="PARTNO" value="9900"/>
+</part>
 </parts>
 <sheets>
 <sheet>
 <plain>
+<text x="363.22" y="132.08" size="1.778" layer="91">Loose components</text>
 </plain>
 <instances>
-<instance part="Y2" gate="G$1" x="271.78" y="50.8" rot="R180"/>
-<instance part="U2" gate="G$1" x="274.32" y="27.94"/>
+<instance part="Y2" gate="G$1" x="271.78" y="50.8" rot="R180">
+<attribute name="PARTNO" x="271.78" y="50.8" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="U2" gate="G$1" x="274.32" y="27.94">
+<attribute name="PARTNO" x="274.32" y="27.94" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="P+13" gate="VCC" x="281.94" y="58.42" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="279.4" y="60.96" size="1.778" layer="96" rot="MR180"/>
 </instance>
 <instance part="GND16" gate="1" x="274.32" y="7.62" smashed="yes">
 <attribute name="VALUE" x="271.78" y="5.08" size="1.778" layer="96"/>
 </instance>
-<instance part="BAT" gate="G$1" x="297.18" y="22.86" rot="R180"/>
+<instance part="BAT" gate="G$1" x="297.18" y="22.86" rot="R180">
+<attribute name="PARTNO" x="297.18" y="22.86" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="GND17" gate="1" x="304.8" y="12.7" smashed="yes">
 <attribute name="VALUE" x="302.26" y="10.16" size="1.778" layer="96"/>
 </instance>
@@ -17312,17 +17749,27 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <instance part="P+15" gate="VCC" x="248.92" y="7.62" smashed="yes" rot="MR180">
 <attribute name="VALUE" x="251.46" y="5.08" size="1.778" layer="96" rot="MR0"/>
 </instance>
-<instance part="C1" gate="G$1" x="304.8" y="43.18"/>
-<instance part="C2" gate="G$1" x="96.52" y="106.68"/>
-<instance part="C3" gate="G$1" x="106.68" y="106.68"/>
+<instance part="C1" gate="G$1" x="304.8" y="43.18">
+<attribute name="PARTNO" x="304.8" y="43.18" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="C2" gate="G$1" x="96.52" y="106.68">
+<attribute name="PARTNO" x="96.52" y="106.68" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="C3" gate="G$1" x="106.68" y="106.68">
+<attribute name="PARTNO" x="106.68" y="106.68" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="P+4" gate="VCC" x="106.68" y="127" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="104.14" y="129.54" size="1.778" layer="96" rot="MR180"/>
 </instance>
 <instance part="GND5" gate="1" x="106.68" y="93.98" smashed="yes">
 <attribute name="VALUE" x="104.14" y="91.44" size="1.778" layer="96"/>
 </instance>
-<instance part="C4" gate="G$1" x="116.84" y="106.68"/>
-<instance part="U1" gate="G$1" x="175.26" y="101.6"/>
+<instance part="C4" gate="G$1" x="116.84" y="106.68">
+<attribute name="PARTNO" x="116.84" y="106.68" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="U1" gate="G$1" x="175.26" y="101.6">
+<attribute name="PARTNO" x="175.26" y="101.6" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="P+5" gate="VCC" x="309.88" y="88.9" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="307.34" y="91.44" size="1.778" layer="96" rot="MR180"/>
 </instance>
@@ -17335,27 +17782,43 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <instance part="P+3" gate="VCC" x="243.84" y="106.68" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="241.3" y="109.22" size="1.778" layer="96" rot="MR180"/>
 </instance>
-<instance part="Y1" gate="G$1" x="132.08" y="91.44"/>
-<instance part="C5" gate="G$1" x="139.7" y="86.36"/>
-<instance part="C6" gate="G$1" x="124.46" y="86.36"/>
+<instance part="Y1" gate="G$1" x="132.08" y="91.44">
+<attribute name="PARTNO" x="132.08" y="91.44" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="C5" gate="G$1" x="139.7" y="86.36">
+<attribute name="PARTNO" x="139.7" y="86.36" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="C6" gate="G$1" x="124.46" y="86.36">
+<attribute name="PARTNO" x="124.46" y="86.36" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="GND1" gate="1" x="132.08" y="71.12" smashed="yes">
 <attribute name="VALUE" x="129.54" y="68.58" size="1.778" layer="96"/>
 </instance>
 <instance part="GND19" gate="1" x="104.14" y="27.94"/>
-<instance part="JP1" gate="G$1" x="276.86" y="104.14"/>
-<instance part="C7" gate="G$1" x="134.62" y="152.4"/>
+<instance part="JP1" gate="G$1" x="276.86" y="104.14">
+<attribute name="BOM" x="276.86" y="104.14" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="C7" gate="G$1" x="134.62" y="152.4">
+<attribute name="PARTNO" x="134.62" y="152.4" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="S1" gate="1" x="142.24" y="139.7" smashed="yes" rot="R270">
 <attribute name="NAME" x="147.32" y="143.51" size="1.778" layer="95"/>
 <attribute name="VALUE" x="137.795" y="133.35" size="1.778" layer="96"/>
 </instance>
-<instance part="IC2" gate="1" x="154.94" y="40.64"/>
-<instance part="IC1" gate="1" x="154.94" y="15.24"/>
-<instance part="J2" gate="G$1" x="99.06" y="43.18" smashed="yes">
+<instance part="IC2" gate="1" x="154.94" y="40.64">
+<attribute name="PARTNO" x="154.94" y="40.64" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="IC1" gate="1" x="154.94" y="15.24">
+<attribute name="PARTNO" x="154.94" y="15.24" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="J1" gate="G$1" x="99.06" y="43.18" smashed="yes">
 <attribute name="NAME" x="99.06" y="38.1" size="1.27" layer="95"/>
+<attribute name="PARTNO" x="99.06" y="43.18" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="D1" gate="1" x="109.22" y="45.72" smashed="yes">
 <attribute name="NAME" x="107.95" y="42.3926" size="1.778" layer="95"/>
 <attribute name="VALUE" x="105.41" y="47.2186" size="1.778" layer="96"/>
+<attribute name="PARTNO" x="109.22" y="45.72" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="GND2" gate="1" x="149.86" y="66.04" smashed="yes">
 <attribute name="VALUE" x="147.32" y="63.5" size="1.778" layer="96"/>
@@ -17365,10 +17828,12 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 </instance>
 <instance part="D2" gate="G$1" x="127" y="-2.54" smashed="yes">
 <attribute name="NAME" x="130.556" y="-7.112" size="1.778" layer="95" rot="R90"/>
+<attribute name="PARTNO" x="127" y="-2.54" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R4" gate="G$1" x="127" y="7.62" smashed="yes" rot="R270">
 <attribute name="NAME" x="128.4986" y="11.43" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="123.698" y="11.43" size="1.778" layer="96" rot="R270"/>
+<attribute name="PARTNO" x="127" y="7.62" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="GND8" gate="1" x="127" y="-12.7" smashed="yes">
 <attribute name="VALUE" x="124.46" y="-15.24" size="1.778" layer="96"/>
@@ -17385,30 +17850,40 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <instance part="C10" gate="G$1" x="177.8" y="35.56" smashed="yes">
 <attribute name="NAME" x="178.816" y="36.195" size="1.778" layer="95"/>
 <attribute name="VALUE" x="178.816" y="31.369" size="1.778" layer="96"/>
+<attribute name="PARTNO" x="177.8" y="35.56" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="PWR_SEL" gate="A" x="134.62" y="48.26"/>
+<instance part="JP4" gate="A" x="134.62" y="48.26">
+<attribute name="PARTNO" x="134.62" y="48.26" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="C9" gate="G$1" x="177.8" y="10.16" smashed="yes">
 <attribute name="NAME" x="178.816" y="10.795" size="1.778" layer="95"/>
 <attribute name="VALUE" x="178.816" y="5.969" size="1.778" layer="96"/>
+<attribute name="PARTNO" x="177.8" y="10.16" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R1" gate="G$1" x="248.92" y="38.1" smashed="yes" rot="R270">
 <attribute name="NAME" x="250.19" y="39.5986" size="1.778" layer="95"/>
 <attribute name="VALUE" x="250.19" y="37.338" size="1.778" layer="96"/>
+<attribute name="PARTNO" x="248.92" y="38.1" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R2" gate="G$1" x="248.92" y="17.78" smashed="yes" rot="R270">
 <attribute name="NAME" x="250.19" y="19.2786" size="1.778" layer="95"/>
 <attribute name="VALUE" x="250.19" y="17.018" size="1.778" layer="96"/>
+<attribute name="PARTNO" x="248.92" y="17.78" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R5" gate="G$1" x="127" y="142.24" rot="MR0"/>
+<instance part="R5" gate="G$1" x="127" y="142.24" rot="MR0">
+<attribute name="PARTNO" x="127" y="142.24" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="P+2" gate="VCC" x="116.84" y="149.86" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="114.3" y="152.4" size="1.778" layer="96" rot="MR180"/>
 </instance>
 <instance part="D3" gate="G$1" x="314.96" y="58.42" smashed="yes">
 <attribute name="NAME" x="318.516" y="53.848" size="1.778" layer="95" rot="R90"/>
+<attribute name="PARTNO" x="314.96" y="58.42" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R3" gate="G$1" x="314.96" y="68.58" smashed="yes" rot="R270">
 <attribute name="NAME" x="316.4586" y="72.39" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="311.658" y="72.39" size="1.778" layer="96" rot="R270"/>
+<attribute name="PARTNO" x="314.96" y="68.58" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="GND7" gate="1" x="314.96" y="48.26" smashed="yes">
 <attribute name="VALUE" x="312.42" y="45.72" size="1.778" layer="96"/>
@@ -17416,32 +17891,75 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <instance part="C8" gate="G$1" x="137.16" y="33.02" smashed="yes">
 <attribute name="NAME" x="129.921" y="31.115" size="1.778" layer="95"/>
 <attribute name="VALUE" x="139.319" y="27.051" size="1.778" layer="96" rot="R180"/>
+<attribute name="PARTNO" x="137.16" y="33.02" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="GND11" gate="1" x="137.16" y="22.86" smashed="yes">
 <attribute name="VALUE" x="137.16" y="20.32" size="1.778" layer="96"/>
 </instance>
-<instance part="JP2" gate="G$1" x="165.1" y="152.4"/>
+<instance part="JP2" gate="G$1" x="165.1" y="152.4">
+<attribute name="PARTNO" x="165.1" y="152.4" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="R6" gate="G$1" x="297.18" y="38.1" smashed="yes" rot="R270">
 <attribute name="NAME" x="298.45" y="39.5986" size="1.778" layer="95"/>
 <attribute name="VALUE" x="298.45" y="37.338" size="1.778" layer="96"/>
+<attribute name="PARTNO" x="297.18" y="38.1" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="P+6" gate="VCC" x="297.18" y="48.26" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="294.64" y="50.8" size="1.778" layer="96" rot="MR180"/>
 </instance>
-<instance part="JP4" gate="G$1" x="228.6" y="33.02" rot="MR0"/>
+<instance part="JP3" gate="G$1" x="228.6" y="33.02" rot="MR0">
+<attribute name="PARTNO" x="228.6" y="33.02" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="P+7" gate="VCC" x="215.9" y="40.64" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="213.36" y="43.18" size="1.778" layer="96" rot="MR180"/>
 </instance>
 <instance part="GND12" gate="1" x="208.28" y="30.48" smashed="yes">
 <attribute name="VALUE" x="205.74" y="27.94" size="1.778" layer="96"/>
 </instance>
-<instance part="RDIV" gate="G$1" x="231.14" y="134.62" rot="MR270"/>
+<instance part="RDIV" gate="G$1" x="231.14" y="134.62" rot="MR270">
+<attribute name="PARTNO" x="231.14" y="134.62" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="P+8" gate="VCC" x="231.14" y="144.78" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="228.6" y="147.32" size="1.778" layer="96" rot="MR180"/>
 </instance>
-<instance part="GND" gate="G$1" x="198.12" y="149.86"/>
+<instance part="GND" gate="G$1" x="198.12" y="149.86">
+<attribute name="BOM" x="198.12" y="149.86" size="1.778" layer="96" display="off"/>
+</instance>
 <instance part="GND13" gate="1" x="205.74" y="139.7" smashed="yes">
 <attribute name="VALUE" x="203.2" y="137.16" size="1.778" layer="96"/>
+</instance>
+<instance part="J2" gate="B1" x="365.76" y="93.98">
+<attribute name="PARTNO" x="365.76" y="93.98" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="BATTERY" gate="G1" x="363.22" y="106.68" rot="R90">
+<attribute name="PARTNO" x="363.22" y="106.68" size="1.778" layer="96" rot="R90" display="off"/>
+</instance>
+<instance part="SOCKET" gate="G$1" x="378.46" y="50.8">
+<attribute name="PARTNO" x="378.46" y="50.8" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="STANDOFF1" gate="G$1" x="365.76" y="88.9">
+<attribute name="PARTNO" x="365.76" y="88.9" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="STANDOFF2" gate="G$1" x="365.76" y="83.82">
+<attribute name="PARTNO" x="365.76" y="83.82" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="STANDOFF3" gate="G$1" x="365.76" y="78.74">
+<attribute name="PARTNO" x="365.76" y="78.74" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="STANDOFF4" gate="G$1" x="365.76" y="73.66">
+<attribute name="PARTNO" x="365.76" y="73.66" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="STANDOFF5" gate="G$1" x="360.68" y="88.9">
+<attribute name="PARTNO" x="360.68" y="88.9" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="STANDOFF6" gate="G$1" x="360.68" y="83.82">
+<attribute name="PARTNO" x="360.68" y="83.82" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="STANDOFF7" gate="G$1" x="360.68" y="78.74">
+<attribute name="PARTNO" x="360.68" y="78.74" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="STANDOFF8" gate="G$1" x="360.68" y="73.66">
+<attribute name="PARTNO" x="360.68" y="73.66" size="1.778" layer="96" display="off"/>
 </instance>
 </instances>
 <busses>
@@ -17508,7 +18026,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 </segment>
 <segment>
 <pinref part="GND19" gate="1" pin="GND"/>
-<pinref part="J2" gate="G$1" pin="RING"/>
+<pinref part="J1" gate="G$1" pin="RING"/>
 <wire x1="104.14" y1="40.64" x2="104.14" y2="30.48" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -17577,7 +18095,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <segment>
 <pinref part="GND12" gate="1" pin="GND"/>
 <wire x1="208.28" y1="33.02" x2="208.28" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="JP4" gate="G$1" pin="3"/>
+<pinref part="JP3" gate="G$1" pin="3"/>
 <wire x1="208.28" y1="35.56" x2="220.98" y2="35.56" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -17684,7 +18202,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <wire x1="297.18" y1="43.18" x2="297.18" y2="45.72" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="JP4" gate="G$1" pin="2"/>
+<pinref part="JP3" gate="G$1" pin="2"/>
 <wire x1="220.98" y1="33.02" x2="215.9" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="P+7" gate="VCC" pin="VCC"/>
 <wire x1="215.9" y1="38.1" x2="215.9" y2="33.02" width="0.1524" layer="91"/>
@@ -18098,7 +18616,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pinref part="JP2" gate="G$1" pin="VCC"/>
 </segment>
 <segment>
-<pinref part="PWR_SEL" gate="A" pin="1"/>
+<pinref part="JP4" gate="A" pin="1"/>
 <wire x1="132.08" y1="50.8" x2="116.84" y2="50.8" width="0.1524" layer="91"/>
 <label x="116.84" y="50.8" size="1.778" layer="95"/>
 </segment>
@@ -18106,7 +18624,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <net name="N$17" class="0">
 <segment>
 <wire x1="104.14" y1="45.72" x2="106.68" y2="45.72" width="0.1524" layer="91"/>
-<pinref part="J2" gate="G$1" pin="TIP"/>
+<pinref part="J1" gate="G$1" pin="TIP"/>
 <pinref part="D1" gate="1" pin="A"/>
 </segment>
 </net>
@@ -18114,7 +18632,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <segment>
 <pinref part="IC1" gate="1" pin="IN"/>
 <wire x1="127" y1="15.24" x2="147.32" y2="15.24" width="0.1524" layer="91"/>
-<pinref part="PWR_SEL" gate="A" pin="2"/>
+<pinref part="JP4" gate="A" pin="2"/>
 <wire x1="132.08" y1="48.26" x2="127" y2="48.26" width="0.1524" layer="91"/>
 <wire x1="127" y1="48.26" x2="127" y2="40.64" width="0.1524" layer="91"/>
 <pinref part="IC2" gate="1" pin="IN"/>
@@ -18154,12 +18672,12 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 </segment>
 <segment>
 <pinref part="D1" gate="1" pin="C"/>
-<pinref part="PWR_SEL" gate="A" pin="3"/>
+<pinref part="JP4" gate="A" pin="3"/>
 <wire x1="111.76" y1="45.72" x2="132.08" y2="45.72" width="0.1524" layer="91"/>
 <label x="116.84" y="45.72" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="JP4" gate="G$1" pin="1"/>
+<pinref part="JP3" gate="G$1" pin="1"/>
 <wire x1="220.98" y1="30.48" x2="213.36" y2="30.48" width="0.1524" layer="91"/>
 <label x="213.36" y="30.48" size="1.778" layer="95"/>
 </segment>
