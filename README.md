@@ -14,7 +14,7 @@ __Required dependencies:__
 We designed custom 2-layer PCBs for this project using [Eagle](https://www.autodesk.com/products/eagle/overview) and fabbed them using [OSHPark](https://oshpark.com/), with all through-hole components for ease of assembly:
 - __clock_driver_board:__ Drives a single digit, and can be daisy-chained together for as many digits as needed.
 - __clock_motherboard:__ Slightly larger than the Arduino UNO but with the same microcontroller and pad layout for future shield compatibility. Integrates the standard DS1307 RTC on the board and controls the whole system - digit drivers, buttons, photoresistor, etc.
-- __full_system:__ Schematic that describes the overall system of PCBs and auxiliary components.
+- __clock_system:__ Schematic that describes the overall system of PCBs and auxiliary components.
 
 ## Assembly
 The digits are supported in a frame made from MDF. 
