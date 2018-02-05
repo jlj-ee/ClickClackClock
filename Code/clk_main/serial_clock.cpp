@@ -113,21 +113,23 @@ void SerialClock::writeDisplay(int leftData, int rightData) {
     if (data[i] > 0) {showColon = true;}
   }
   latchData();
+  updateLeft();
+  updateRight();
 }
 
 /*  SerialClock shiftData
     Shifts data onto the serial bus.
     Inputs:
-      int val : value to be written to the serial bus
-      uint8_t bitOrder : {LSBFIRST, MSBFIRST} the order in which the bits in val will be written
-      int bitCount : number of bits in val
+      int data : value to be written to the serial bus
+      uint8_t bitOrder : {LSBFIRST, MSBFIRST} the order in which the bits in data will be written
+      int bitCount : number of bits in data
 */
-void SerialClock::shiftData(int val, uint8_t bitOrder=LSBFIRST, int bitCount=16) {
+void SerialClock::shiftData(int data, uint8_t bitOrder=LSBFIRST, int bitCount=16) {
   for (int i = 0; i < bitCount; i++)  {
     if (bitOrder == LSBFIRST)
-      digitalWrite(dataPin, !!(val & (1 << i)));
+      digitalWrite(dataPin, !!(data & (1 << i)));
     else {
-      digitalWrite(dataPin, !!(val & (1 << (bitCount - 1 - i))));
+      digitalWrite(dataPin, !!(data & (1 << (bitCount - 1 - i))));
     }
     digitalWrite(clockPin, HIGH);
     delayMicroseconds(SERIAL_PERIOD_US);
