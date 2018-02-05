@@ -12,11 +12,7 @@
 
 class SerialClock{
     const static uint8_t segments[10];
-    int dataPin;
-    int clockPin;
-    int strobePin;
-    int rightEnPin;
-    int leftEnPin;
+    int dataPin, clockPin, strobePin, rightEnPin, leftEnPin;
     uint16_t interleaveBytes(uint8_t a, uint8_t b);
     void shiftData(int val, uint8_t bitOrder, int bitCount);
     void writeDigit(int digitVal, bool showP);
