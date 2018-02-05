@@ -17611,11 +17611,11 @@ This is the mechanical footprint for a #4 phillips button head screw. Use the ke
 <attribute name="PARTNO" value="21RZ310-RC"/>
 </part>
 <part name="S1" library="switch-omron" deviceset="10-XX" device="" value="RESET"/>
-<part name="IC2" library="v-reg" deviceset="78XXS" device="" value="LM1086CT-3.3">
-<attribute name="PARTNO" value="LM1086CT-3.3/NOPB"/>
+<part name="IC2" library="v-reg" deviceset="78XXS" device="" value="LM2937ET-3.3">
+<attribute name="PARTNO" value="LM2937ET-3.3/NOPB"/>
 </part>
-<part name="IC1" library="v-reg" deviceset="78XXS" device="" value="LM1086CT-5.0">
-<attribute name="PARTNO" value="LM1086CT-5.0/NOPB"/>
+<part name="IC1" library="v-reg" deviceset="78XXS" device="" value="LM7805CT">
+<attribute name="PARTNO" value="LM7805CT/NOPB"/>
 </part>
 <part name="J1" library="minimidi" deviceset="2.1MMJACK" device="">
 <attribute name="PARTNO" value="PJ-102AH"/>
@@ -17635,14 +17635,14 @@ This is the mechanical footprint for a #4 phillips button head screw. Use the ke
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="P+1" library="supply1" deviceset="VCC" device=""/>
-<part name="C10" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="50uF/6V">
-<attribute name="PARTNO" value="ECA-1CM470I"/>
+<part name="C10" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="10uF/6V">
+<attribute name="PARTNO" value="A758BG106M1EAAE070"/>
 </part>
 <part name="JP4" library="pinhead" deviceset="PINHD-1X3" device="" value="PWR_SEL">
 <attribute name="PARTNO" value="68001-403HLF"/>
 </part>
-<part name="C9" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="50uF/6V">
-<attribute name="PARTNO" value="ECA-1CM470I"/>
+<part name="C9" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="0.1uF/6V">
+<attribute name="PARTNO" value="21RZ310-RC"/>
 </part>
 <part name="R1" library="minimidi" deviceset="R-US_" device="0207/5V" value="4.7 K">
 <attribute name="PARTNO" value="CFR-25JB-52-4K7"/>
@@ -17661,8 +17661,8 @@ This is the mechanical footprint for a #4 phillips button head screw. Use the ke
 <attribute name="PARTNO" value="CFR-25JB-52-1K"/>
 </part>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
-<part name="C8" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="22uF/25V">
-<attribute name="PARTNO" value="EEU-FR1H220B"/>
+<part name="C8" library="minimidi" deviceset="CPOL-US" device="E2.5-6" value="0.22uF/25V">
+<attribute name="PARTNO" value="FG14X7R1H224KNT06"/>
 </part>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="JP2" library="clock_motherboard" deviceset="FTDI_DEVICE" device="">
