@@ -1,5 +1,5 @@
 # ClickClackClock
-This was a hobby project to create an impractically loud and large clock constructed from salvaged electromechanical seven-segment flip digits. To be slightly less obnoxious, the clock automatically sleeps in dark rooms, and wakes up with the correct time when exposed to light -- great for people who like to wake up with the dawn! 
+This was a hobby project to create an impractically loud and large clock constructed from salvaged electromechanical seven-segment flip digits (also known as vane displays). To be slightly less obnoxious, the clock automatically sleeps in dark rooms, and wakes up with the correct time when exposed to light -- great for people who like to wake up with the dawn! 
 <!--- The clock can also be put into a countdown/stopwatch mode, appropriate for games, New Year's Eve, the apocalypse, etc. --->
 
 The [flip digits](http://www.scoretronics.com/components/Digits_Brochure.pdf) came from a retired aquatics scoreboard/timing system. The segments change position when current is pulsed through a magnetic coil. 

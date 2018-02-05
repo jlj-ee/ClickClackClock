@@ -1,28 +1,22 @@
-/*
-PIN ORDER
-dat
-clk
-str
-oe
-*/
-
-#include <Wire.h>
+#include <Arduino.h>
 #include "RTClib.h"
+#include "serial_clock.h"
 
 #define LIGHT_TRIGGER 100
 
 DateTime last, current;
 RTC_DS1307 rtc;
 
-//Pins connected to !OE
-int minuteOE = 13;
-int hourOE = 9;
-//Pin connected to strobe
-int latchPin = 10;
-////Pin connected to data
-int dataPin = 11;
-//Pin connected to clock
+// Pins connected to !OE
+int minuteOE = 9;
+int hourOE = 10;
+// Pin connected to strobe
+int strobePin = 11;
+// Pin connected to clock
 int clockPin = 12;
+// Pin connected to data
+int dataPin = 13;
+
 
 int setPin = 2;
 int upPin = 3;
@@ -35,40 +29,11 @@ int downPin = 4;
 volatile int mode = 0;
 
 
-byte segs[11] = {
-  B11111100, // 0
-  B01100000, // 1
-  B11011010, // 2
-  B11110010, // 3
-  B01100110, // 4
-  B10110110, // 5
-  B10111110, // 6
-  B11100000, // 7
-  B11111110, // 8
-  B11110110, // 9
-  B00000000, // [blank]
-};
-
-word upDownBytes(byte segs) {
-  byte nsegs = ~segs;
-  word result = 0;
-  for(int i = 15; i >= 0; i--) {
-    result |= (segs >> i) & 1;
-    result <<= 1;
-    result |= (nsegs >> i) & 1;
-    if (i != 0) {
-      result <<= 1;
-    }
-  }
-  //Serial.println(segs, BIN);
-  //Serial.println(result, BIN);
-  return result;
-}
 
 void setup() {
   Serial.begin(9600);
   
-  pinMode(latchPin, OUTPUT);
+  pinMode(strobePin, OUTPUT);
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
   pinMode(minuteOE, OUTPUT);
@@ -76,7 +41,7 @@ void setup() {
   pinMode(setPin, INPUT_PULLUP);
   pinMode(upPin, INPUT_PULLUP);
   pinMode(downPin, INPUT_PULLUP);
-  digitalWrite(latchPin, LOW);
+  digitalWrite(strobePin, LOW);
   digitalWrite(dataPin, LOW);
   digitalWrite(clockPin, LOW);
   digitalWrite(minuteOE, HIGH);
@@ -96,7 +61,7 @@ void setup() {
 }
 
 // Sets hour/minute digits to blank until it's light out
-void blackOut(boolean h, boolean m) {
+void blackOut(bool h, bool m) {
   for (int i=0; i<4; i++) {
     shiftDigit(10,0);
   }
@@ -122,7 +87,9 @@ void setTimeMode() {
       break;
   }
 }
-
+  // if (!isMilitaryTime) {
+  //   hour = (hour + 11) % 12 + 1; // Convert from 0-24 to 1-12
+  // }
 void loop() {
   current = rtc.now();                           // Update the time
   int light_reading = analogRead(A0);
