@@ -9,49 +9,38 @@
 //    D   P
 //  Order: ABCDEFGP (where P is the decimal point)
 const uint8_t SerialClock::segments[10] = {
-    0xFC,  // 0
-    0x60,  // 1
-    0xDA,  // 2
-    0xF2,  // 3
-    0x66,  // 4
-    0xB6,  // 5
-    0xBE,  // 6
-    0xE0,  // 7
-    0xFE,  // 8
-    0xF6,  // 9
+    0xFC,  // B11111100 => 0
+    0x60,  // B01100000 => 1
+    0xDA,  // B11001010 => 2
+    0xF2,  // B11110010 => 3
+    0x66,  // B01100110 => 4
+    0xB6,  // B10110110 => 5
+    0xBE,  // B10111110 => 6
+    0xE0,  // B11100000 => 7
+    0xFE,  // B11111110 => 8
+    0xF6,  // B11110110 => 9
 };
 
 /*  SerialClock constructor
     Constructs a SerialClock object.
     Inputs:
-      int dataPin, clockPin, strobePin, rightEnPin, leftEnPin : pin assignments
+      int data_pin, clock_pin, strobe_pin, right_en_pin, left_en_pin : pin assignments
 */
-SerialClock::SerialClock(int dataPin, int clockPin, int strobePin, int leftEnPin, int rightEnPin) {
-  dataPin = dataPin;
-  clockPin = clockPin;
-  strobePin = strobePin;
-  rightEnPin = rightEnPin;
-  leftEnPin = leftEnPin;
-
-  // segments[0] = 0xFC; // 0
-  // segments[1] = 0x60; // 1
-  // segments[2] = 0xDA; // 2
-  // segments[3] = 0xF2; // 3
-  // segments[4] = 0x66; // 4
-  // segments[5] = 0xB6; // 5
-  // segments[6] = 0xBE; // 6
-  // segments[7] = 0xE0; // 7
-  // segments[8] = 0xFE; // 8
-  // segments[9] = 0xF6; // 9
+SerialClock::SerialClock(int data_pin, int clock_pin, int strobe_pin, int left_en_pin, int right_en_pin) {
+  data_pin_ = data_pin;
+  clock_pin_ = clock_pin;
+  strobe_pin_ = strobe_pin;
+  right_en_pin_ = right_en_pin;
+  left_en_pin_ = left_en_pin;
 }
 
 /*  SerialClock latchData
     Pulses the strobe pin to latch data in to the clock.
 */
 void SerialClock::latchData() {
-  digitalWrite(strobePin, HIGH);  // Strobe is active high
+  digitalWrite(strobe_pin_, HIGH);  // Strobe is active high
   delayMicroseconds(SERIAL_PERIOD_US);
-  digitalWrite(strobePin, LOW);
+  digitalWrite(strobe_pin_, LOW);
 }
 
 /*  SerialClock updateRight
@@ -59,9 +48,9 @@ void SerialClock::latchData() {
    value.
 */
 void SerialClock::updateRight() {
-  digitalWrite(rightEnPin, LOW);  // Output enable is active low
+  digitalWrite(right_en_pin_, LOW);  // Output enable is active low
   delay(OUTPUT_ENABLE_MS);
-  digitalWrite(rightEnPin, HIGH);
+  digitalWrite(right_en_pin_, HIGH);
 }
 
 /*  SerialClock updateLeft
@@ -69,9 +58,9 @@ void SerialClock::updateRight() {
    value.
 */
 void SerialClock::updateLeft() {
-  digitalWrite(leftEnPin, LOW);  // Output enable is active low
+  digitalWrite(left_en_pin_, LOW);  // Output enable is active low
   delay(OUTPUT_ENABLE_MS);
-  digitalWrite(leftEnPin, HIGH);
+  digitalWrite(left_en_pin_, HIGH);
 }
 
 /*  SerialClock writeBlank
@@ -82,12 +71,12 @@ void SerialClock::writeBlank() { shiftData((int)interleaveBytes(BLANK_DIGIT, ~BL
 /*  SerialClock writeDigit
     Writes a clock digit to the 7-segment display.
     Inputs:
-      int digitVal  : the value of the digit (0-9)
-      bool showP    : if true, shows the point for the digit
+      int digit_val  : the value of the digit (0-9)
+      bool show_p    : if true, shows the point for the digit
 */
-void SerialClock::writeDigit(int digitVal, bool showP = false) {
-  uint8_t data = segments[digitVal];
-  if (showP) {
+void SerialClock::writeDigit(int digit_val, bool show_p) {
+  uint8_t data = segments[digit_val];
+  if (show_p) {
     data = data + B00000001;  // decimal point is lsb
   }
   shiftData((int)interleaveBytes(data, ~data));
@@ -98,31 +87,31 @@ void SerialClock::writeDigit(int digitVal, bool showP = false) {
     [Left Left  : Right Right]
     [Tens Ones  : Tens  Ones]
     Inputs:
-      int leftData  : data for the left-side digits (hours/minutes)
-      int rightData : data for the right-side digits (minutes/seconds)
+      int left_data  : data for the left-side digits (hours/minutes)
+      int right_data : data for the right-side digits (minutes/seconds)
     Note: Sets the colon if left value is nonzero but hide leading zeros.
     e.g. valid display times: 10:01, _1:01, _ _ _15, _ _ _ _5
 */
-void SerialClock::updateDisplay(int leftData, int rightData) {
-  int data[2] = {leftData, rightData};
-  int tens[2] = {leftData / 10, rightData / 10};
-  int ones[2] = {leftData % 10, rightData % 10};
-  bool showColon = false;
+void SerialClock::updateDisplay(int left_data, int right_data) {
+  int data[2] = {left_data, right_data};
+  int tens[2] = {left_data / 10, right_data / 10};
+  int ones[2] = {left_data % 10, right_data % 10};
+  bool show_colon = false;
   // Write data to the daisy-chained drivers
   for (int i = 0; i < 2; i++) {
-    if (showColon || tens[i] >= 1) {
+    if (show_colon || tens[i] >= 1) {
       writeDigit(tens[i]);
-      writeDigit(ones[i], showColon);
+      writeDigit(ones[i], show_colon);
     } else {
       writeBlank();
       if (ones[i] > 0) {
-        writeDigit(ones[i], showColon);
+        writeDigit(ones[i], show_colon);
       } else {
         writeBlank();
       }
     }
     if (data[i] > 0) {
-      showColon = true;
+      show_colon = true;
     }
   }
   // Latch data and enable outputs to display new values
@@ -135,7 +124,7 @@ void SerialClock::updateDisplay(int leftData, int rightData) {
     Blanks the clock display.
     Note: Flushes data from shift registers
 */
-void SerialClock::clearDisplay(uint8_t mode = CLEAR_BOTH) {
+void SerialClock::clearDisplay(uint8_t mode) {
   for (int i = 0; i < 4; i++) {
     writeBlank();
   }
@@ -152,19 +141,19 @@ void SerialClock::clearDisplay(uint8_t mode = CLEAR_BOTH) {
     Shifts data onto the serial bus.
     Inputs:
       int data          : value to be written to the serial bus
-      uint8_t bitOrder  : {LSBFIRST, MSBFIRST} the order in which the bits in data will be written
-      int bitCount      :  number of bits in data
+      uint8_t bit_order  : {LSBFIRST, MSBFIRST} the order in which the bits in data will be written
+      int bit_count      :  number of bits in data
 */
-void SerialClock::shiftData(int data, uint8_t bitOrder = LSBFIRST, int bitCount = 16) {
-  for (int i = 0; i < bitCount; i++) {
-    if (bitOrder == LSBFIRST)
-      digitalWrite(dataPin, !!(data & (1 << i)));
+void SerialClock::shiftData(int data, uint8_t bit_order, int bit_count) {
+  for (int i = 0; i < bit_count; i++) {
+    if (bit_order == LSBFIRST)
+      digitalWrite(data_pin_, !!(data & (1 << i)));
     else {
-      digitalWrite(dataPin, !!(data & (1 << (bitCount - 1 - i))));
+      digitalWrite(data_pin_, !!(data & (1 << (bit_count - 1 - i))));
     }
-    digitalWrite(clockPin, HIGH);
+    digitalWrite(clock_pin_, HIGH);
     delayMicroseconds(SERIAL_PERIOD_US);
-    digitalWrite(clockPin, LOW);
+    digitalWrite(clock_pin_, LOW);
     delayMicroseconds(SERIAL_PERIOD_US);
   }
 }
