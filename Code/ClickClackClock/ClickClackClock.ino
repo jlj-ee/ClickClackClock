@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "serial_clock.h" 
+#include "SerialClock.h" 
 #include "RTClib.h"
 #include "EnableInterrupt.h"
 
