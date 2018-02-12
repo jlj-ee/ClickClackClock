@@ -1,8 +1,11 @@
 /*
 
 */
-#ifndef _SERIAL_TIME_H_
-#define _SERIAL_TIME_H_
+#ifndef _SERIAL_CLOCK_H_
+#define _SERIAL_CLOCK_H_
+
+#include <stdint.h>
+#include <Arduino.h>
 
 // Communication constants
 #define SERIAL_PERIOD_US 4    // Arbitrary 250kHz data rate
@@ -16,15 +19,15 @@
 
 class SerialClock {
   const static uint8_t segments[10];
-  int dataPin, clockPin, strobePin, rightEnPin, leftEnPin;
+  int data_pin_, clock_pin_, strobe_pin_, right_en_pin_, left_en_pin_;
   uint16_t interleaveBytes(uint8_t a, uint8_t b);
-  void shiftData(int val, uint8_t bitOrder, int bitCount);
+  void shiftData(int val, uint8_t bitOrder = LSBFIRST, int bitCount = 16);
 
  public:
-  SerialClock(int dataPin, int clockPin, int strobePin, int leftEnPin, int rightEnPin);
-  void updateDisplay(int leftData, int rightData);
-  void clearDisplay(uint8_t mode);
-  void writeDigit(int digitVal, bool showP);
+  SerialClock(int data_pin, int clock_pin, int strobe_pin, int left_en_pin, int right_en_pin);
+  void updateDisplay(int left_data, int right_data);
+  void clearDisplay(uint8_t mode = CLEAR_BOTH);
+  void writeDigit(int digit_val, bool show_p = false);
   void writeBlank();
   void latchData();
   void updateRight();
