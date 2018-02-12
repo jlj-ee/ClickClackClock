@@ -1,4 +1,4 @@
-#include "serial_clock.h"
+#include "SerialClock.h"
 #include <Arduino.h>
 
 // 7-segment display configurations for all the relevant digits
