@@ -2,6 +2,7 @@
     "configurations": [
         {
             "name": "Win32",
+            "intelliSenseMode": "clang-x64",
             "includePath": [
                 "${workspaceRoot}",
                 "C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino",
@@ -14,10 +15,10 @@
             "defines": [
                 "_DEBUG",
                 "UNICODE",
+                "__GNUC__=6",
                 "__AVR_ATmega328P__",
                 "__AVR_ENHANCED__"
             ],
-            "intelliSenseMode": "clang-x64",
             "browse": {
                 "path": [
                     "${workspaceRoot}",
@@ -27,7 +28,7 @@
                     "C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/standard",
                     "C:/Users/JJimenez/Documents/Arduino/Libraries"
                 ],
-                "limitSymbolsToIncludedHeaders": false,
+                "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
             }
         }

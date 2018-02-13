@@ -1,113 +1,67 @@
 #include "SerialClock.h"
 #include <Arduino.h>
 
-// 7-segment display configurations for all the relevant digits
-//    A
-//  F   B
-//    G
-//  E   C
-//    D   P
-//  Order: ABCDEFGP (where P is the decimal point)
-const uint8_t SerialClock::segments[10] = {
-    0xFC,  // B11111100 => 0
-    0x60,  // B01100000 => 1
-    0xDA,  // B11001010 => 2
-    0xF2,  // B11110010 => 3
-    0x66,  // B01100110 => 4
-    0xB6,  // B10110110 => 5
-    0xBE,  // B10111110 => 6
-    0xE0,  // B11100000 => 7
-    0xFE,  // B11111110 => 8
-    0xF6,  // B11110110 => 9
-};
+/*===========================================================================*/
+// Class constructor
 
-/*  SerialClock constructor
-    Constructs a SerialClock object.
-    Inputs:
-      int data_pin, clock_pin, strobe_pin, right_en_pin, left_en_pin : pin assignments
-*/
-SerialClock::SerialClock(int data_pin, int clock_pin, int strobe_pin, int left_en_pin, int right_en_pin) {
+SerialClock::SerialClock(int data_pin, int clock_pin, int strobe_pin,
+                         int left_en_pin, int right_en_pin, int clock_period_us,
+                         int strobe_pulse_ms) {
+  // Set private members
   data_pin_ = data_pin;
   clock_pin_ = clock_pin;
   strobe_pin_ = strobe_pin;
   right_en_pin_ = right_en_pin;
   left_en_pin_ = left_en_pin;
+  clock_period_us_ = clock_period_us;
+  strobe_pulse_ms_ = strobe_pulse_ms;
+
+  // Configure pins
 }
 
-/*  SerialClock latchData
-    Pulses the strobe pin to latch data in to the clock.
-*/
-void SerialClock::latchData() {
-  digitalWrite(strobe_pin_, HIGH);  // Strobe is active high
-  delayMicroseconds(SERIAL_PERIOD_US);
-  digitalWrite(strobe_pin_, LOW);
-}
+/*===========================================================================*/
+// Public functions
 
-/*  SerialClock updateRight
-    Pulses the output enable pin for minutes (or seconds) to update the display with the latched
-   value.
-*/
-void SerialClock::updateRight() {
-  digitalWrite(right_en_pin_, LOW);  // Output enable is active low
-  delay(OUTPUT_ENABLE_MS);
-  digitalWrite(right_en_pin_, HIGH);
-}
-
-/*  SerialClock updateLeft
-    Pulses the output enable pin for hours (or minutes) to update the display with the latched
-   value.
-*/
-void SerialClock::updateLeft() {
-  digitalWrite(left_en_pin_, LOW);  // Output enable is active low
-  delay(OUTPUT_ENABLE_MS);
-  digitalWrite(left_en_pin_, HIGH);
-}
-
-/*  SerialClock writeBlank
-    Writes the value blank the 7-segment display.
-*/
-void SerialClock::writeBlank() { shiftData((int)interleaveBytes(BLANK_DIGIT, ~BLANK_DIGIT)); }
-
-/*  SerialClock writeDigit
-    Writes a clock digit to the 7-segment display.
-    Inputs:
-      int digit_val  : the value of the digit (0-9)
-      bool show_p    : if true, shows the point for the digit
-*/
-void SerialClock::writeDigit(int digit_val, bool show_p) {
-  uint8_t data = segments[digit_val];
+void SerialClock::writeArbitrary(Segments display_val, bool show_p) {
+  // Cast enum to raw byte
+  uint8_t raw_bits = display_val;
+  // Point is LSB of segments; set it if necessary
   if (show_p) {
-    data = data + B00000001;  // decimal point is lsb
+    raw_bits = raw_bits | S_DOT;
   }
-  shiftData((int)interleaveBytes(data, ~data));
+  // Shift data onto the serial bus
+  shiftData((int)interleaveBytes(raw_bits, ~raw_bits));
 }
 
-/*  SerialClock updateDisplay
-    Updates the clock display with new data according to the following format:
-    [Left Left  : Right Right]
-    [Tens Ones  : Tens  Ones]
-    Inputs:
-      int left_data  : data for the left-side digits (hours/minutes)
-      int right_data : data for the right-side digits (minutes/seconds)
-    Note: Sets the colon if left value is nonzero but hide leading zeros.
-    e.g. valid display times: 10:01, _1:01, _ _ _15, _ _ _ _5
-*/
-void SerialClock::updateDisplay(int left_data, int right_data) {
+void SerialClock::writeNumeric(uint8_t digit_val, bool show_p) {
+  // Select correct segment configuration for the given digit value
+  Segments numbers[10] = {S_0, S_1, S_2, S_3, S_4, S_5, S_6, S_7, S_8, S_9};
+  if (digit_val < 10) {
+    writeArbitrary(numbers[digit_val], show_p);  
+  }
+  else {
+    // If no matching configuration was found, clear the display.
+    writeArbitrary(S_BLANK);
+  }
+}
+
+void SerialClock::updateTime(uint8_t left_data, uint8_t right_data) {
   int data[2] = {left_data, right_data};
+  // Extract tens digits and ones digits separately
   int tens[2] = {left_data / 10, right_data / 10};
   int ones[2] = {left_data % 10, right_data % 10};
   bool show_colon = false;
   // Write data to the daisy-chained drivers
   for (int i = 0; i < 2; i++) {
     if (show_colon || tens[i] >= 1) {
-      writeDigit(tens[i]);
-      writeDigit(ones[i], show_colon);
+      writeNumeric(tens[i]);
+      writeNumeric(ones[i], show_colon);
     } else {
-      writeBlank();
+      writeArbitrary(S_BLANK);
       if (ones[i] > 0) {
-        writeDigit(ones[i], show_colon);
+        writeNumeric(ones[i], show_colon);
       } else {
-        writeBlank();
+        writeArbitrary(S_BLANK);
       }
     }
     if (data[i] > 0) {
@@ -120,15 +74,14 @@ void SerialClock::updateDisplay(int left_data, int right_data) {
   updateRight();
 }
 
-/*  SerialClock clearDisplay
-    Blanks the clock display.
-    Note: Flushes data from shift registers
-*/
-void SerialClock::clearDisplay(uint8_t mode) {
+
+void SerialClock::clearDisplay(ClearMode mode) {
+  // Write blanks to all digits
   for (int i = 0; i < 4; i++) {
-    writeBlank();
+    writeArbitrary(S_BLANK);
   }
   latchData();
+  // Only enable (apply) according to the given mode
   if (mode == CLEAR_BOTH || mode == CLEAR_LEFT) {
     updateLeft();
   }
@@ -137,36 +90,44 @@ void SerialClock::clearDisplay(uint8_t mode) {
   }
 }
 
-/*  SerialClock shiftData
-    Shifts data onto the serial bus.
-    Inputs:
-      int data          : value to be written to the serial bus
-      uint8_t bit_order  : {LSBFIRST, MSBFIRST} the order in which the bits in data will be written
-      int bit_count      :  number of bits in data
-*/
-void SerialClock::shiftData(int data, uint8_t bit_order, int bit_count) {
+void SerialClock::latchData(void) {
+  digitalWrite(strobe_pin_, HIGH);  // Strobe is active high
+  delayMicroseconds(clock_period_us_);
+  digitalWrite(strobe_pin_, LOW);
+}
+
+void SerialClock::updateRight(void) {
+  digitalWrite(right_en_pin_, LOW);  // Output enable is active low
+  delay(strobe_pulse_ms_);
+  digitalWrite(right_en_pin_, HIGH);
+}
+
+void SerialClock::updateLeft(void) {
+  digitalWrite(left_en_pin_, LOW);  // Output enable is active low
+  delay(strobe_pulse_ms_);
+  digitalWrite(left_en_pin_, HIGH);
+}
+
+/*===========================================================================*/
+// Low-level functions
+
+// Simple bit-bang implementation since speed is not an issue 
+void SerialClock::shiftData(int data, bool lsb_first, int bit_count) {
+  // Mask off bits according to bit order and set data pin
   for (int i = 0; i < bit_count; i++) {
-    if (bit_order == LSBFIRST)
+    if (lsb_first)
       digitalWrite(data_pin_, !!(data & (1 << i)));
     else {
       digitalWrite(data_pin_, !!(data & (1 << (bit_count - 1 - i))));
     }
+    // Cycle clock
     digitalWrite(clock_pin_, HIGH);
-    delayMicroseconds(SERIAL_PERIOD_US);
+    delayMicroseconds(clock_period_us_);
     digitalWrite(clock_pin_, LOW);
-    delayMicroseconds(SERIAL_PERIOD_US);
+    delayMicroseconds(clock_period_us_);
   }
 }
 
-/*  SerialClock interleaveBytes
-    Interleaves the bits of two bytes to form one 16-bit word.
-    ex) a = 0xF0, b = 0x0F => result = 0xAA55
-    Inputs:
-      uint8_t a : first byte
-      uint8_t b : second byte
-    Outputs:
-      uint16_t result : the interleaved result of a and b
-*/
 uint16_t SerialClock::interleaveBytes(uint8_t a, uint8_t b) {
   uint16_t result = 0;
   for (int i = 7; i >= 0; i--) {

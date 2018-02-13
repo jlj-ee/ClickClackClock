@@ -11,34 +11,38 @@
 #define debug_print(...) do { if (DEBUG) Serial.println(__VA_ARGS__); } while (0)
 /*===============================================================================================*/
 
-/* Output Pin Definitions */
-#define N_OUT_PINS 5
-// Pins connected to active-low output enable (!OE)
-#define LEFTEN_PIN 9
-#define RIGHTEN_PIN 10
-// Pin connected to strobe (latch)
-#define STROBE_PIN 11
-// Pin connected to clock
-#define CLOCK_PIN 12
-// Pin connected to data
-#define DATA_PIN 13
-uint8_t output_pins[N_OUT_PINS] = {LEFTEN_PIN, RIGHTEN_PIN, STROBE_PIN, CLOCK_PIN, DATA_PIN};
+/**
+ * Output pin designations
+ */
 
-/* Input Pin Definitions */
-#define N_IN_PINS 6
-// Buttons
-#define CLOCK_MODE_PIN 2
-#define COUNT_MODE_PIN 3
-#define CTRL1_PIN 4
-#define CTRL2_PIN 5
-#define UP_PIN 6
-#define DOWN_PIN 7
-uint8_t input_pins[N_IN_PINS] = {CLOCK_MODE_PIN, COUNT_MODE_PIN, CTRL1_PIN, CTRL2_PIN, UP_PIN, DOWN_PIN};
+enum OutputPin {
+  LEFTEN_PIN  = 9,    ///< Active-low output enable pin (!OE) for left-side driver
+  RIGHTEN_PIN = 10,   ///< Active-low output enable pin (!OE) for right-side driver
+  STROBE_PIN  = 11,   ///< Active-high strobe pin (latch) for serial data
+  CLOCK_PIN   = 12,   ///< Active-high clock pin for serial data
+  DATA_PIN    = 13    ///< Data pin for serial data
+};
+const uint8_t OUTPUT_PINS[] = {LEFTEN_PIN, RIGHTEN_PIN, STROBE_PIN, CLOCK_PIN, DATA_PIN};
+int nOutputPins = sizeof(OUTPUT_PINS)/sizeof(OUTPUT_PINS[0]);
+
+/**
+ * Input pin designations
+ */
+enum InputPin {
+  CLOCK_MODE_PIN  = 2,
+  COUNT_MODE_PIN  = 3,
+  CTRL1_PIN       = 4,
+  CTRL2_PIN       = 5,
+  UP_PIN          = 6,
+  DOWN_PIN        = 7
+};
+const uint8_t INPUT_PINS[] = {CLOCK_MODE_PIN, COUNT_MODE_PIN, CTRL1_PIN, CTRL2_PIN, UP_PIN, DOWN_PIN};
+int nInputPins = sizeof(INPUT_PINS)/sizeof(INPUT_PINS[0]);
 
 #define LIGHT_TRIGGER 100
 
 // Operating modes
-typedef enum {
+enum Modes {
   MODE_CLOCK,
   MODE_CLOCK_SET_HR,
   MODE_CLOCK_SET_MIN,
@@ -48,28 +52,28 @@ typedef enum {
   MODE_TIMER_SET,
   MODE_TIMER_RUN,
   MODE_TIMER_PAUSE
-} Modes;
+};
 
-/*===============================================================================================*/
+/*============================================================================*/
 DateTime last, current;
 RTC_DS1307 rtc;
 
 // Current mode
 volatile Modes current_mode;
 
-/*===============================================================================================*/
+/*============================================================================*/
 void setup() {
   debug_start(9600);
 
   // Set up output pins
-  for (uint8_t i = 0; i < N_OUT_PINS; i++) {
-    pinMode(output_pins[i], OUTPUT);
+  for (int i = 0; i < nOutputPins; i++) {
+    pinMode(OUTPUT_PINS[i], OUTPUT);
   }
 
   // Set up input pins
-  for (uint8_t i = 0; i < N_IN_PINS; i++) {
-    pinMode(input_pins[i], INPUT_PULLUP);
-    enableInterrupt(input_pins[i] | PINCHANGEINTERRUPT, buttonHandler, FALLING);
+  for (int i = 0; i < nInputPins; i++) {
+    pinMode(INPUT_PINS[i], INPUT_PULLUP);
+    enableInterrupt(INPUT_PINS[i] | PINCHANGEINTERRUPT, buttonHandler, FALLING);
   }
 
   rtc.begin(); // Always returns true
