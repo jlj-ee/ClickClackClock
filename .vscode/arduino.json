@@ -1,4 +1,5 @@
 {
     "board": "arduino:avr:uno",
-    "sketch": "Code\\clk_main\\clk_main.ino"
+    "sketch": "src\\ClickClackClock\\ClickClackClock.ino",
+    "output": ".\\build"
 }

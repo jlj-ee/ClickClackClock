@@ -1,7 +1,10 @@
 /*!
- * @file SerialClock.h
- * @brief      Class and functions to control a clock display that consists of
- *             four 7-segment displays that are daisy-chained serially.
+ * @file SerialClockDisplay.h
+ * @brief      Class and function prototypes for a clock display driver.
+* 
+ *             Clock display consists of four 7-segment displays that are 
+ *             daisy-chained and driven by serial-input latched source drivers 
+ *             like the MIC5891.
  *
  * @author     Jaime Jimenez
  * @author     CJ Valle
@@ -9,60 +12,76 @@
  * @version    0.1
  * @date       February 2018
  */
-#ifndef _SERIAL_CLOCK_H_
-#define _SERIAL_CLOCK_H_
+
+#ifndef _SERIAL_CLOCK_DISPLAY_H_
+#define _SERIAL_CLOCK_DISPLAY_H_
 
 #include <stdint.h>
 
+/*!
+ * @brief       7-segment display configurations for all the relevant digits
+ *                                    A
+ *                                  F   B
+ *                                    G
+ *                                  E   C
+ *                                    D   P
+ *              Order: ABCDEFGP (where P is the decimal point)
+ */
+typedef enum Segments {
+  S_0 = 0xFC,     //!< B11111100 => 0
+  S_1 = 0x60,     //!< B01100000 => 1
+  S_2 = 0xDA,     //!< B11001010 => 2
+  S_3 = 0xF2,     //!< B11110010 => 3
+  S_4 = 0x66,     //!< B01100110 => 4
+  S_5 = 0xB6,     //!< B10110110 => 5
+  S_6 = 0xBE,     //!< B10111110 => 6
+  S_7 = 0xE0,     //!< B11100000 => 7
+  S_8 = 0xFE,     //!< B11111110 => 8
+  S_9 = 0xF6,     //!< B11110110 => 9
+  S_DOT = 0x01,   //!< B00000001 => Point
+  S_BLANK = 0x00  //!< B00000000 => All off
+};
+
+/*! @brief      Blanking modes for the SerialClockDisplay. */
+typedef enum ClearMode {
+  CLEAR_BOTH = 0,  //!< Clear both halves
+  CLEAR_LEFT = 1,  //!< Clear left half
+  CLEAR_RIGHT = 2  //!< Clear right half
+};
+
+/*! @brief      Digital active level. */
+typedef enum ActiveLevel {
+  ACTIVE_LOW = 0,  //!< Assertion = digital low
+  ACTIVE_HIGH = 1  //!< Assertion = digital high
+};
+
+/*!
+ * @brief      Structure to encapsulate serial display configuration parameters.
+ */
+typedef struct SerialDisplayConfig {
+  uint8_t data_pin;        //!< Serial data pin.
+  uint8_t clock_pin;       //!< Serial clock pin.
+  uint8_t strobe_pin;      //!< Strobe (latch) pin.
+  uint8_t leften_pin;      //!< Output enable pin for left half.
+  uint8_t righten_pin;     //!< Output enable pin for right half.
+  int clock_period_us;     //!< Serial clock period in microseconds.
+  int en_pulse_ms;         //!< Output enable pulse width in milliseconds.
+  ActiveLevel strobe_pol;  //!< Strobe (latch) polarity.
+  ActiveLevel en_pol;      //!< Output enable polarity.
+};
+
 /*===========================================================================*/
 // Class definition
-class SerialClock {
-  
- // Public members and functions
+class SerialClockDisplay {
+  // Public members and functions
  public:
   /*!
-   * @brief       7-segment display configurations for all the relevant digits
-   *                                    A
-   *                                  F   B
-   *                                    G
-   *                                  E   C
-   *                                    D   P
-   *              Order: ABCDEFGP (where P is the decimal point)
-   */
-  enum Segments {
-    S_0 = 0xFC,     ///< B11111100 => 0
-    S_1 = 0x60,     ///< B01100000 => 1
-    S_2 = 0xDA,     ///< B11001010 => 2
-    S_3 = 0xF2,     ///< B11110010 => 3
-    S_4 = 0x66,     ///< B01100110 => 4
-    S_5 = 0xB6,     ///< B10110110 => 5
-    S_6 = 0xBE,     ///< B10111110 => 6
-    S_7 = 0xE0,     ///< B11100000 => 7
-    S_8 = 0xFE,     ///< B11111110 => 8
-    S_9 = 0xF6,     ///< B11110110 => 9
-    S_DOT = 0x01,   ///< B00000001 => Point
-    S_BLANK = 0x00  ///< B00000000 => All off
-  };
-
-  /*! @brief      Blanking modes for the SerialClock. */
-  enum ClearMode {
-    CLEAR_BOTH = 0,  ///< Clear both halves
-    CLEAR_LEFT = 1,  ///< Clear left half
-    CLEAR_RIGHT = 2  ///< Clear right half
-  };
-
-  /*!
-   * @brief      Constructs a SerialClock object.
+   * @brief      Configures and starts the SerialClockDisplay.
    *
-   * @param      data_pin      Serial data pin.
-   * @param      clock_pin     Serial clock pin.
-   * @param      strobe_pin    Active-high strobe (latch) pin.
-   * @param      left_en_pin   Active-low output enable pin for left half.
-   * @param      right_en_pin  ACtive-low output enable pin for right half.
+   * @param      display_config  Pointer to the structure used to configure the
+   *                             SerialClockDisplay
    */
-  SerialClock(int data_pin, int clock_pin, int strobe_pin, int left_en_pin,
-              int right_en_pin, int clock_period_us = 4,
-              int strobe_pulse_ms = 200);
+  void begin(SerialDisplayConfig *display_config);
 
   /*!
    * @brief      Updates the clock display with new time data, according to the
@@ -117,12 +136,10 @@ class SerialClock {
    */
   void updateLeft(void);
 
-/*===========================================================================*/
-// Private members and low-level functions
+  /*===========================================================================*/
+  // Private members and low-level functions
  private:
-  int data_pin_, clock_pin_, strobe_pin_, right_en_pin_, left_en_pin_; //!< Pins
-  int clock_period_us_; //!< Serial clock period in microseconds 
-  int strobe_pulse_ms_; //!< Latch pulse width
+  SerialDisplayConfig *config_;  //!< Pointer to the configuration.
 
   /*!
    * @brief      Interleaves the bits of bytes a and b to form one word.
@@ -148,4 +165,4 @@ class SerialClock {
   void shiftData(int val, bool lsb_first = true, int bit_count = 16);
 };
 
-#endif  //_SERIAL_CLOCK_H_
+#endif  //_SERIAL_CLOCK_DISPLAY_H_

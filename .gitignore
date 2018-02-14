@@ -4,6 +4,7 @@
 *.s#*
 *.l#*
 
-# VSCODE
+# Other
 #######################
 *.stackdump
+build/*
