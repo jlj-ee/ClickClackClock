@@ -1,48 +1,49 @@
 #include <Arduino.h>
-#include "SerialClock.h" 
-#include "RTClib.h"
 #include "EnableInterrupt.h"
-
+#include "RTClib.h"
+#include "SerialClockDisplay.h"
 
 /*===============================================================================================*/
 #define DEBUG 1
 
-#define debug_start(baud) do { if (DEBUG) Serial.begin(baud); } while (0)
-#define debug_print(...) do { if (DEBUG) Serial.println(__VA_ARGS__); } while (0)
+#define debug_start(baud)          \
+  do {                             \
+    if (DEBUG) Serial.begin(baud); \
+  } while (0)
+#define debug_print(...)                    \
+  do {                                      \
+    if (DEBUG) Serial.println(__VA_ARGS__); \
+  } while (0)
 /*===============================================================================================*/
 
 /**
  * Output pin designations
  */
-
-enum OutputPin {
-  LEFTEN_PIN  = 9,    ///< Active-low output enable pin (!OE) for left-side driver
-  RIGHTEN_PIN = 10,   ///< Active-low output enable pin (!OE) for right-side driver
-  STROBE_PIN  = 11,   ///< Active-high strobe pin (latch) for serial data
-  CLOCK_PIN   = 12,   ///< Active-high clock pin for serial data
-  DATA_PIN    = 13    ///< Data pin for serial data
+typedef enum OutputPin {
+  LEFTEN_PIN = 9,    ///< Active-low output enable pin (!OE) for left side
+  RIGHTEN_PIN = 10,  ///< Active-low output enable pin (!OE) for right side
+  STROBE_PIN = 11,   ///< Active-high strobe pin (latch) for serial data
+  CLOCK_PIN = 12,    ///< Active-high clock pin for serial data
+  DATA_PIN = 13      ///< Data pin for serial data
 };
-const uint8_t OUTPUT_PINS[] = {LEFTEN_PIN, RIGHTEN_PIN, STROBE_PIN, CLOCK_PIN, DATA_PIN};
-int nOutputPins = sizeof(OUTPUT_PINS)/sizeof(OUTPUT_PINS[0]);
 
 /**
  * Input pin designations
  */
-enum InputPin {
-  CLOCK_MODE_PIN  = 2,
-  COUNT_MODE_PIN  = 3,
-  CTRL1_PIN       = 4,
-  CTRL2_PIN       = 5,
-  UP_PIN          = 6,
-  DOWN_PIN        = 7
+typedef enum InputPin {
+  CLOCK_MODE_PIN = 2,
+  COUNT_MODE_PIN = 3,
+  CTRL1_PIN = 4,
+  CTRL2_PIN = 5,
+  UP_PIN = 6,
+  DOWN_PIN = 7
 };
-const uint8_t INPUT_PINS[] = {CLOCK_MODE_PIN, COUNT_MODE_PIN, CTRL1_PIN, CTRL2_PIN, UP_PIN, DOWN_PIN};
-int nInputPins = sizeof(INPUT_PINS)/sizeof(INPUT_PINS[0]);
-
-#define LIGHT_TRIGGER 100
+const uint8_t INPUT_PINS[] = {CLOCK_MODE_PIN, COUNT_MODE_PIN, CTRL1_PIN,
+                              CTRL2_PIN,      UP_PIN,         DOWN_PIN};
+int nInputPins = sizeof(INPUT_PINS) / sizeof(INPUT_PINS[0]);
 
 // Operating modes
-enum Modes {
+typedef enum Modes {
   MODE_CLOCK,
   MODE_CLOCK_SET_HR,
   MODE_CLOCK_SET_MIN,
@@ -55,20 +56,28 @@ enum Modes {
 };
 
 /*============================================================================*/
+// Local variables
 DateTime last, current;
 RTC_DS1307 rtc;
-
-// Current mode
+SerialDisplayConfig config;
+SerialClockDisplay display;
 volatile Modes current_mode;
+volatile int light_threshold;
 
 /*============================================================================*/
 void setup() {
   debug_start(9600);
 
-  // Set up output pins
-  for (int i = 0; i < nOutputPins; i++) {
-    pinMode(OUTPUT_PINS[i], OUTPUT);
-  }
+  config = (SerialDisplayConfig){.data_pin = DATA_PIN,
+                                 .clock_pin = CLOCK_PIN,
+                                 .strobe_pin = STROBE_PIN,
+                                 .leften_pin = LEFTEN_PIN,
+                                 .righten_pin = RIGHTEN_PIN,
+                                 .clock_period_us = 4,
+                                 .en_pulse_ms = 200,
+                                 .strobe_pol = ACTIVE_HIGH,
+                                 .en_pol = ACTIVE_LOW};
+  display.begin(&config);
 
   // Set up input pins
   for (int i = 0; i < nInputPins; i++) {
@@ -76,17 +85,15 @@ void setup() {
     enableInterrupt(INPUT_PINS[i] | PINCHANGEINTERRUPT, buttonHandler, FALLING);
   }
 
-  rtc.begin(); // Always returns true
+  rtc.begin();  // Always returns true
   if (!rtc.isrunning()) {
     debug_print("RTC is NOT running!");
-    while(1);
   }
   // Set the RTC to the date & time this sketch was compiled:
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
 }
 
-void buttonHandler() {
-}
+void buttonHandler() {}
 
 void loop() {
   debug_print("idle");
@@ -107,19 +114,6 @@ void loop() {
 //   latchIn();
 // }
 
-// void setTimeMode() {
-//   switch (mode) {
-//     case 0:
-//       mode = 1;
-//       break;
-//     case 1:
-//       mode = 2;
-//       break;
-//     default:
-//       mode = 0;
-//       break;
-//   }
-// }
 //   // if (!isMilitaryTime) {
 //   //   hour = (hour + 11) % 12 + 1; // Convert from 0-24 to 1-12
 //   // }
@@ -130,7 +124,8 @@ void loop() {
 //   if (light_reading > LIGHT_TRIGGER) {          // If it's dark out turn off
 //     blackOut(1,1);
 //   } else {
-//     if (last.minute() != current.minute()) {     // If the time has changed, update!
+//     if (last.minute() != current.minute()) {     // If the time has changed,
+//     update!
 //       shiftTime(current);
 //       latchIn();
 //     } else {
@@ -139,9 +134,10 @@ void loop() {
 //         blackOut(0,1);
 //         while (mode == 1) {
 //           //set minutes
-//           if (digitalRead(upPin) == LOW) current = DateTime(current.unixtime()+60);
-//           if (digitalRead(downPin) == LOW) current = DateTime(current.unixtime()-60);
-//           if (last.unixtime() != current.unixtime()) {
+//           if (digitalRead(upPin) == LOW) current =
+//           DateTime(current.unixtime()+60); if (digitalRead(downPin) == LOW)
+//           current = DateTime(current.unixtime()-60); if (last.unixtime() !=
+//           current.unixtime()) {
 //             rtc.adjust(current);
 //             shiftTime(current);
 //             latchIn();
@@ -151,9 +147,10 @@ void loop() {
 //         blackOut(1,0);
 //         while (mode == 2) {
 //           //set hours
-//           if (digitalRead(upPin) == LOW) current = DateTime(current.unixtime()+3600);
-//           if (digitalRead(downPin) == LOW) current = DateTime(current.unixtime()-3600);
-//           if (last.unixtime() != current.unixtime()) {
+//           if (digitalRead(upPin) == LOW) current =
+//           DateTime(current.unixtime()+3600); if (digitalRead(downPin) == LOW)
+//           current = DateTime(current.unixtime()-3600); if (last.unixtime() !=
+//           current.unixtime()) {
 //             rtc.adjust(current);
 //             shiftTime(current);
 //             latchIn();
@@ -165,6 +162,7 @@ void loop() {
 //       }
 //     }
 //   }
-//   last = current;                                // Save the time for next time
-//   delay(500);                                    // Only do this every half second
+//   last = current;                                // Save the time for next
+//   time delay(500);                                    // Only do this every
+//   half second
 // }
