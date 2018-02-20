@@ -3,8 +3,9 @@
 #include "RTClib.h"
 #include "SerialClockDisplay.h"
 
-/*===============================================================================================*/
-#define DEBUG 1
+/*===========================================================================*/
+// Macros for debug
+#define DEBUG 1  // Set to 0 to disable debug functions
 
 #define debug_start(baud)          \
   do {                             \
@@ -14,22 +15,20 @@
   do {                                      \
     if (DEBUG) Serial.println(__VA_ARGS__); \
   } while (0)
-/*===============================================================================================*/
 
-/**
- * Output pin designations
- */
+/*===========================================================================*/
+// Some enum definitions for convenience
+
+// Output pin designations
 typedef enum OutputPin {
-  LEFTEN_PIN = 9,    ///< Active-low output enable pin (!OE) for left side
-  RIGHTEN_PIN = 10,  ///< Active-low output enable pin (!OE) for right side
-  STROBE_PIN = 11,   ///< Active-high strobe pin (latch) for serial data
-  CLOCK_PIN = 12,    ///< Active-high clock pin for serial data
-  DATA_PIN = 13      ///< Data pin for serial data
+  LEFTEN_PIN = 9,    //!< Active-low output enable pin (!OE) for left side
+  RIGHTEN_PIN = 10,  //!< Active-low output enable pin (!OE) for right side
+  STROBE_PIN = 11,   //!< Active-high strobe pin (latch) for serial data
+  CLOCK_PIN = 12,    //!< Active-high clock pin for serial data
+  DATA_PIN = 13      //!< Data pin for serial data
 };
 
-/**
- * Input pin designations
- */
+// Input pin designations
 typedef enum InputPin {
   CLOCK_MODE_PIN = 2,
   COUNT_MODE_PIN = 3,
@@ -38,9 +37,6 @@ typedef enum InputPin {
   UP_PIN = 6,
   DOWN_PIN = 7
 };
-const uint8_t INPUT_PINS[] = {CLOCK_MODE_PIN, COUNT_MODE_PIN, CTRL1_PIN,
-                              CTRL2_PIN,      UP_PIN,         DOWN_PIN};
-int nInputPins = sizeof(INPUT_PINS) / sizeof(INPUT_PINS[0]);
 
 // Operating modes
 typedef enum Modes {
@@ -56,10 +52,21 @@ typedef enum Modes {
 };
 
 /*============================================================================*/
-// Local variables
+// Local constants and variables
+const uint8_t INPUT_PINS[] = {CLOCK_MODE_PIN, COUNT_MODE_PIN, CTRL1_PIN,
+                              CTRL2_PIN,      UP_PIN,         DOWN_PIN};
+int nInputPins = sizeof(INPUT_PINS) / sizeof(INPUT_PINS[0]);
 DateTime last, current;
 RTC_DS1307 rtc;
-SerialDisplayConfig config;
+const SerialDisplayConfig config = {.data_pin = DATA_PIN,
+                                    .clock_pin = CLOCK_PIN,
+                                    .strobe_pin = STROBE_PIN,
+                                    .leften_pin = LEFTEN_PIN,
+                                    .righten_pin = RIGHTEN_PIN,
+                                    .clock_period_us = 4,
+                                    .en_pulse_ms = 200,
+                                    .strobe_pol = ACTIVE_HIGH,
+                                    .en_pol = ACTIVE_LOW};
 SerialClockDisplay display;
 volatile Modes current_mode;
 volatile int light_threshold;
@@ -68,15 +75,6 @@ volatile int light_threshold;
 void setup() {
   debug_start(9600);
 
-  config = (SerialDisplayConfig){.data_pin = DATA_PIN,
-                                 .clock_pin = CLOCK_PIN,
-                                 .strobe_pin = STROBE_PIN,
-                                 .leften_pin = LEFTEN_PIN,
-                                 .righten_pin = RIGHTEN_PIN,
-                                 .clock_period_us = 4,
-                                 .en_pulse_ms = 200,
-                                 .strobe_pol = ACTIVE_HIGH,
-                                 .en_pol = ACTIVE_LOW};
   display.begin(&config);
 
   // Set up input pins

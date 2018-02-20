@@ -28,7 +28,7 @@
                     "C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/standard",
                     "C:/Users/JJimenez/Documents/Arduino/Libraries"
                 ],
-                "limitSymbolsToIncludedHeaders": true,
+                "limitSymbolsToIncludedHeaders": false,
                 "databaseFilename": ""
             }
         }

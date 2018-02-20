@@ -1,9 +1,9 @@
 /*!
  * @file SerialClockDisplay.h
  * @brief      Class and function prototypes for a clock display driver.
-* 
- *             Clock display consists of four 7-segment displays that are 
- *             daisy-chained and driven by serial-input latched source drivers 
+ *
+ *             Clock display consists of four 7-segment displays that are
+ *             daisy-chained and driven by serial-input latched source drivers
  *             like the MIC5891.
  *
  * @author     Jaime Jimenez
@@ -18,16 +18,19 @@
 
 #include <stdint.h>
 
+#define NUM_DISPLAYS 4
+#define NUM_SECTIONS 2
+
 /*!
- * @brief       7-segment display configurations for all the relevant digits
- *                                    A
- *                                  F   B
- *                                    G
- *                                  E   C
- *                                    D   P
+ * @brief       7-segment display configurations.
+ *                            A
+ *                          F   B
+ *                            G
+ *                          E   C
+ *                            D   P
  *              Order: ABCDEFGP (where P is the decimal point)
  */
-typedef enum Segments {
+enum Segments {
   S_0 = 0xFC,     //!< B11111100 => 0
   S_1 = 0x60,     //!< B01100000 => 1
   S_2 = 0xDA,     //!< B11001010 => 2
@@ -42,15 +45,18 @@ typedef enum Segments {
   S_BLANK = 0x00  //!< B00000000 => All off
 };
 
+/* @brief       Bitwise or assignment operator for Segments */
+inline Segments& operator|=(Segments& lhs, const Segments& rhs);
+
 /*! @brief      Blanking modes for the SerialClockDisplay. */
-typedef enum ClearMode {
-  CLEAR_BOTH = 0,  //!< Clear both halves
-  CLEAR_LEFT = 1,  //!< Clear left half
-  CLEAR_RIGHT = 2  //!< Clear right half
+enum ClearMode {
+  CLEAR_BOTH = 0,  //!< Clear both halves.
+  CLEAR_LEFT = 1,  //!< Clear left half.
+  CLEAR_RIGHT = 2  //!< Clear right half.
 };
 
 /*! @brief      Digital active level. */
-typedef enum ActiveLevel {
+enum ActiveLevel {
   ACTIVE_LOW = 0,  //!< Assertion = digital low
   ACTIVE_HIGH = 1  //!< Assertion = digital high
 };
@@ -58,7 +64,7 @@ typedef enum ActiveLevel {
 /*!
  * @brief      Structure to encapsulate serial display configuration parameters.
  */
-typedef struct SerialDisplayConfig {
+struct SerialDisplayConfig {
   uint8_t data_pin;        //!< Serial data pin.
   uint8_t clock_pin;       //!< Serial clock pin.
   uint8_t strobe_pin;      //!< Strobe (latch) pin.
@@ -79,9 +85,33 @@ class SerialClockDisplay {
    * @brief      Configures and starts the SerialClockDisplay.
    *
    * @param      display_config  Pointer to the structure used to configure the
-   *                             SerialClockDisplay
+   *                             SerialClockDisplay.
    */
-  void begin(SerialDisplayConfig *display_config);
+  void begin(const SerialDisplayConfig* display_config);
+
+/*!
+   * @brief      Writes an arbitrary segment configuration to the buffer.
+   *
+   * @param      display_val  8-bit segment configuration.
+   * @param      loc          Index to write
+   * @param      show_p       If true, shows the decimal point/colon.
+   */
+  void writeBuffer(Segments display_val, uint8_t loc, bool show_p = false);
+
+  /*!
+   * @brief      Writes a clock digit value to the buffer.
+   *
+   * @param      digit_val  8-bit clock digit value (0-9).
+   * @param      loc          Index to write
+   * @param      show_p     If true, shows the decimal point/colon.
+   */
+  void writeBufferNumeric(uint8_t digit_val, uint8_t loc, bool show_p = false);
+
+  /*!
+   * @brief       Writes the buffer to the serial bus, latches it into the
+   *              drivers, and enables outputs to update the displayed values.
+   */
+  void displayBuffer(void);
 
   /*!
    * @brief      Updates the clock display with new time data, according to the
@@ -95,10 +125,10 @@ class SerialClockDisplay {
    * @param      left_data   Data for the left digits (hours or minutes).
    * @param      right_data  Data for the right digits (minutes or seconds).
    */
-  void updateTime(uint8_t left_data, uint8_t right_data);
+  void displayTime(uint8_t left_data, uint8_t right_data);
 
   /*!
-   * @brief      Clears the clock display and flushes data from serial bus.
+   * @brief      Clears the clock display.
    *
    * @param      mode  Chooses whether left/right/both displays are cleared.
    *                   (CLEAR_BOTH or CLEAR_LEFT or CLEAR_RIGHT)
@@ -106,52 +136,30 @@ class SerialClockDisplay {
   void clearDisplay(ClearMode mode = CLEAR_BOTH);
 
   /*!
-   * @brief      Writes a clock digit value to the serial bus
-   *
-   * @param      digit_val  8-bit clock digit value (0-9)
-   * @param      show_p     If true, shows the decimal point/colon
-   */
-  void writeNumeric(uint8_t digit_val, bool show_p = false);
-
-  /*!
-   * @brief      Writes an arbitrary segment configuration to the serial bus
-   *
-   * @param      display_val  8-bit segment configuration
-   * @param      show_p       If true, shows the decimal point/colon
-   */
-  void writeArbitrary(Segments display_val, bool show_p = false);
-
-  /*!
-   * @brief      Pulses the strobe pin to latch in data on the serial bus
+   * @brief      Pulses the strobe pin to latch in data on the serial bus.
    */
   void latchData(void);
 
   /*!
-   * @brief      Pulses the right output enable pin to display data on that side
+   * @brief      Pulses the right enable pin to display data on that side.
    */
   void updateRight(void);
 
   /*!
-   * @brief      Pulses the left output enable pin to display data on that side
+   * @brief      Pulses the left enable pin to display data on that side.
    */
   void updateLeft(void);
+
+  /**
+   * @brief      Returns a pointer to an array holding the display values.
+   */
+  Segments* readDisplay(void);
 
   /*===========================================================================*/
   // Private members and low-level functions
  private:
-  SerialDisplayConfig *config_;  //!< Pointer to the configuration.
-
-  /*!
-   * @brief      Interleaves the bits of bytes a and b to form one word.
-   *             Starts with the first bit of a, then the first bit of b, etc.
-   *             For example: a = 0xF0, b = 0x0F => result = 0xAA55
-   *
-   * @param      a     First byte
-   * @param      b     Second byte
-   *
-   * @return     The interleaved result of a and b.
-   */
-  uint16_t interleaveBytes(uint8_t a, uint8_t b);
+  const SerialDisplayConfig* _config;  //!< Pointer to the configuration.
+  Segments _display[NUM_DISPLAYS];     //!< Buffer of values on the display.
 
   /*!
    * @brief      Shifts data onto the serial bus.
@@ -163,6 +171,18 @@ class SerialClockDisplay {
    * @param      bit_count  The number of bits of data to be shifted.
    */
   void shiftData(int val, bool lsb_first = true, int bit_count = 16);
+
+  /*!
+   * @brief      Interleaves the bits of bytes a and b to form one word.
+   *             Starts with the first bit of a, then the first bit of b, etc.
+   *             For example: a = 0xF0, b = 0x0F => result = 0xAA55
+   *
+   * @param      a     First byte.
+   * @param      b     Second byte.
+   *
+   * @return     The interleaved result of a and b.
+   */
+  uint16_t interleaveBytes(uint8_t a, uint8_t b);
 };
 
 #endif  //_SERIAL_CLOCK_DISPLAY_H_
