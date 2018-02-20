@@ -1,9 +1,9 @@
 /*!
  * @file       SerialClockDisplay.cpp
  * @brief      Clock display driver.
- * 
- *             Clock display consists of four 7-segment displays that are 
- *             daisy-chained and driven by serial-input latched source drivers 
+ *
+ *             Clock display consists of four 7-segment displays that are
+ *             daisy-chained and driven by serial-input latched source drivers
  *             like the MIC5891.
  *
  * @author     Jaime Jimenez
@@ -19,119 +19,137 @@
 /*===========================================================================*/
 // Public functions
 
-void SerialClockDisplay::begin(SerialDisplayConfig *display_config) {
+inline Segments& operator|=(Segments& lhs, const Segments& rhs) {
+  return lhs = static_cast<Segments>(static_cast<uint8_t>(lhs) |
+                                     static_cast<uint8_t>(rhs));
+}
+
+void SerialClockDisplay::begin(const SerialDisplayConfig* display_config) {
   // Set private members
-  config_ = display_config;
+  _config = display_config;
 
   // Configure pins
-  pinMode(config_->data_pin, OUTPUT);
-  pinMode(config_->clock_pin, OUTPUT);
-  pinMode(config_->strobe_pin, OUTPUT);
-  pinMode(config_->leften_pin, OUTPUT);
-  pinMode(config_->righten_pin, OUTPUT);
+  pinMode(_config->data_pin, OUTPUT);
+  pinMode(_config->clock_pin, OUTPUT);
+  pinMode(_config->strobe_pin, OUTPUT);
+  pinMode(_config->leften_pin, OUTPUT);
+  pinMode(_config->righten_pin, OUTPUT);
 }
 
-void SerialClockDisplay::writeArbitrary(Segments display_val, bool show_p) {
-  // Cast enum to raw byte
-  uint8_t raw_bits = display_val;
+void SerialClockDisplay::writeBuffer(Segments display_val, uint8_t loc,
+                                     bool show_p) {
   // Point is LSB of segments; set it if necessary
   if (show_p) {
-    raw_bits = raw_bits | S_DOT;
+    display_val |= S_DOT;
   }
-  // Shift data onto the serial bus
-  shiftData((int)interleaveBytes(raw_bits, ~raw_bits));
+  _display[loc] = display_val;
 }
 
-void SerialClockDisplay::writeNumeric(uint8_t digit_val, bool show_p) {
+void SerialClockDisplay::writeBufferNumeric(uint8_t digit_val, uint8_t loc,
+                                            bool show_p) {
   // Select correct segment configuration for the given digit value
   Segments numbers[10] = {S_0, S_1, S_2, S_3, S_4, S_5, S_6, S_7, S_8, S_9};
   if (digit_val < 10) {
-    writeArbitrary(numbers[digit_val], show_p);
+    writeBuffer(numbers[digit_val], loc, show_p);
   } else {
     // If no matching configuration was found, clear the display.
-    writeArbitrary(S_BLANK);
+    writeBuffer(S_BLANK, loc);
   }
 }
 
-void SerialClockDisplay::updateTime(uint8_t left_data, uint8_t right_data) {
-  int data[2] = {left_data, right_data};
-  // Extract tens digits and ones digits separately
-  int tens[2] = {left_data / 10, right_data / 10};
-  int ones[2] = {left_data % 10, right_data % 10};
-  bool show_colon = false;
-  // Write data to the daisy-chained drivers to fill all four digits
-  for (int i = 0; i < 2; i++) {
-    if (show_colon || tens[i] >= 1) {
-      writeNumeric(tens[i]);
-      writeNumeric(ones[i], show_colon);
-    } else {
-      writeArbitrary(S_BLANK);
-      if (ones[i] > 0) {
-        writeNumeric(ones[i], show_colon);
-      } else {
-        writeArbitrary(S_BLANK);
-      }
-    }
-    if (data[i] > 0) {
-      show_colon = true;
-    }
+void SerialClockDisplay::displayBuffer(void) {
+  // Shift data onto the serial bus
+  for (int i = 0; i < NUM_DISPLAYS; i++) {
+    shiftData(static_cast<int>(interleaveBytes(_display[i], ~_display[i])));
   }
-  // Latch data and enable outputs to display new values
+  // Latch data in and enable outputs to display new data
   latchData();
   updateLeft();
   updateRight();
 }
 
+void SerialClockDisplay::displayTime(uint8_t left_data, uint8_t right_data) {
+  uint8_t data[NUM_SECTIONS] = {left_data, right_data};
+  // Extract tens digits and ones digits separately
+  uint8_t tens[NUM_SECTIONS] = {static_cast<uint8_t>(left_data / 10),
+                                static_cast<uint8_t>(right_data / 10)};
+  uint8_t ones[NUM_SECTIONS] = {static_cast<uint8_t>(left_data % 10),
+                                static_cast<uint8_t>(right_data % 10)};
+  bool show_colon = false;
+  // Write data to the buffer to fill all four digits
+  uint8_t j = 0;
+  for (int i = 0; i < NUM_SECTIONS; i++) {
+    if (show_colon || tens[i] >= 1) {
+      writeBufferNumeric(tens[i], j);
+      j++;
+      writeBufferNumeric(ones[i], j, show_colon);
+    } else {
+      writeBuffer(S_BLANK, j);
+      j++;
+      writeBufferNumeric(ones[i], j, show_colon);
+    }
+    if (data[i] > 0) {
+      show_colon = true;
+    }
+    j++;
+  }
+  // Push new data to the displays
+  displayBuffer();
+}
+
 void SerialClockDisplay::clearDisplay(ClearMode mode) {
-  // Write blanks to all digits
-  for (int i = 0; i < 4; i++) {
-    writeArbitrary(S_BLANK);
+  bool left = mode == CLEAR_BOTH || mode == CLEAR_LEFT;
+  bool right = mode == CLEAR_BOTH || mode == CLEAR_RIGHT;
+  // Insert blanks according to the given mode
+  if (left) {
+    _display[0] = S_BLANK;
+    _display[1] = S_BLANK;
   }
-  latchData();
-  // Only enable (display new data) according to the given mode
-  if (mode == CLEAR_BOTH || mode == CLEAR_LEFT) {
-    updateLeft();
+  if (right) {
+    _display[2] = S_BLANK;
+    _display[3] = S_BLANK;
   }
-  if (mode == CLEAR_BOTH || mode == CLEAR_RIGHT) {
-    updateRight();
-  }
+  // Push new (blank) data to the displays
+  displayBuffer();
 }
 
 void SerialClockDisplay::latchData(void) {
-  digitalWrite(config_->strobe_pin, HIGH);
-  delayMicroseconds(config_->clock_period_us);
-  digitalWrite(config_->strobe_pin, LOW);
+  digitalWrite(_config->strobe_pin, HIGH);
+  delayMicroseconds(_config->clock_period_us);
+  digitalWrite(_config->strobe_pin, LOW);
 }
 
 void SerialClockDisplay::updateRight(void) {
-  digitalWrite(config_->righten_pin, LOW);
-  delay(config_->en_pulse_ms);
-  digitalWrite(config_->righten_pin, HIGH);
+  digitalWrite(_config->righten_pin, LOW);
+  delay(_config->en_pulse_ms);
+  digitalWrite(_config->righten_pin, HIGH);
 }
 
 void SerialClockDisplay::updateLeft(void) {
-  digitalWrite(config_->leften_pin, LOW);
-  delay(config_->en_pulse_ms);
-  digitalWrite(config_->leften_pin, HIGH);
+  digitalWrite(_config->leften_pin, LOW);
+  delay(_config->en_pulse_ms);
+  digitalWrite(_config->leften_pin, HIGH);
 }
+
+Segments* SerialClockDisplay::readDisplay(void) { return _display; }
 
 /*===========================================================================*/
 // Low-level functions
 
 // Simple bit-bang implementation of a serial write since speed is not an issue
 void SerialClockDisplay::shiftData(int data, bool lsb_first, int bit_count) {
-  // Mask off bits according to bit order and set data pin
   for (int i = 0; i < bit_count; i++) {
+    // Mask off bits according to bit order and set data pin
     if (lsb_first)
-      digitalWrite(config_->data_pin, !!(data & (1 << i)));
+      digitalWrite(_config->data_pin, !!(data & (1 << i)));
     else {
-      digitalWrite(config_->data_pin, !!(data & (1 << (bit_count - 1 - i))));
+      digitalWrite(_config->data_pin, !!(data & (1 << (bit_count - 1 - i))));
     }
     // Cycle clock
-    digitalWrite(config_->clock_pin, HIGH);
-    delayMicroseconds(config_->clock_period_us);
-    digitalWrite(config_->clock_pin, LOW);
-    delayMicroseconds(config_->clock_period_us);
+    digitalWrite(_config->clock_pin, HIGH);
+    delayMicroseconds(_config->clock_period_us);
+    digitalWrite(_config->clock_pin, LOW);
+    delayMicroseconds(_config->clock_period_us);
   }
 }
 
