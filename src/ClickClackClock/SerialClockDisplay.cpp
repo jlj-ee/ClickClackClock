@@ -34,13 +34,19 @@ void SerialClockDisplay::begin(const SerialDisplayConfig* display_config) {
   pinMode(_config->strobe_pin, OUTPUT);
   pinMode(_config->leften_pin, OUTPUT);
   pinMode(_config->righten_pin, OUTPUT);
+
+  // Get register/bitmask information for serial pins
+  _clock_reg = portOutputRegister(digitalPinToPort(_config->clock_pin));
+  _clock_bit = digitalPinToBitMask(_config->clock_pin);
+  _data_reg = portOutputRegister(digitalPinToPort(_config->data_pin));
+  _data_bit = digitalPinToBitMask(_config->data_pin);
 }
 
 void SerialClockDisplay::writeBuffer(Segments display_val, uint8_t loc,
                                      bool show_p) {
   // Point is LSB of segments; set it if necessary
   if (show_p) {
-    display_val |= S_DOT;
+    display_val |= kSDot;
   }
   _display[loc] = display_val;
 }
@@ -48,12 +54,12 @@ void SerialClockDisplay::writeBuffer(Segments display_val, uint8_t loc,
 void SerialClockDisplay::writeBufferNumeric(uint8_t digit_val, uint8_t loc,
                                             bool show_p) {
   // Select correct segment configuration for the given digit value
-  Segments numbers[10] = {S_0, S_1, S_2, S_3, S_4, S_5, S_6, S_7, S_8, S_9};
+  Segments numbers[10] = {kS0, kS1, kS2, kS3, kS4, kS5, kS6, kS7, kS8, kS9};
   if (digit_val < 10) {
     writeBuffer(numbers[digit_val], loc, show_p);
   } else {
     // If no matching configuration was found, clear the display.
-    writeBuffer(S_BLANK, loc);
+    writeBuffer(kSBlank, loc);
   }
 }
 
@@ -84,7 +90,7 @@ void SerialClockDisplay::displayTime(uint8_t left_data, uint8_t right_data) {
       j++;
       writeBufferNumeric(ones[i], j, show_colon);
     } else {
-      writeBuffer(S_BLANK, j);
+      writeBuffer(kSBlank, j);
       j++;
       writeBufferNumeric(ones[i], j, show_colon);
     }
@@ -98,16 +104,16 @@ void SerialClockDisplay::displayTime(uint8_t left_data, uint8_t right_data) {
 }
 
 void SerialClockDisplay::clearDisplay(ClearMode mode) {
-  bool left = mode == CLEAR_BOTH || mode == CLEAR_LEFT;
-  bool right = mode == CLEAR_BOTH || mode == CLEAR_RIGHT;
+  bool left = mode == kClearBoth || mode == kClearLeft;
+  bool right = mode == kClearBoth || mode == kClearRight;
   // Insert blanks according to the given mode
   if (left) {
-    _display[0] = S_BLANK;
-    _display[1] = S_BLANK;
+    _display[0] = kSBlank;
+    _display[1] = kSBlank;
   }
   if (right) {
-    _display[2] = S_BLANK;
-    _display[3] = S_BLANK;
+    _display[2] = kSBlank;
+    _display[3] = kSBlank;
   }
   // Push new (blank) data to the displays
   displayBuffer();
@@ -136,20 +142,30 @@ Segments* SerialClockDisplay::readDisplay(void) { return _display; }
 /*===========================================================================*/
 // Low-level functions
 
-// Simple bit-bang implementation of a serial write since speed is not an issue
+// Bit-bang implementation of a serial write since speed is not an issue
 void SerialClockDisplay::shiftData(int data, bool lsb_first, int bit_count) {
+  // Construct data buffer according to bit order
+  bool data_buffer[bit_count];
   for (int i = 0; i < bit_count; i++) {
-    // Mask off bits according to bit order and set data pin
     if (lsb_first)
-      digitalWrite(_config->data_pin, !!(data & (1 << i)));
+      data_buffer[i] = !!(data & (1 << i));
     else {
-      digitalWrite(_config->data_pin, !!(data & (1 << (bit_count - 1 - i))));
+      data_buffer[i] = !!(data & (1 << (bit_count - 1 - i)));
+    }
+  }
+
+  // Write data and clock
+  for (int i = 0; i < bit_count; i++) {
+    if (data_buffer[i]) {
+      *_data_reg &= ~_data_bit;  // LOW
+    } else {
+      *_data_reg |= _data_bit;  // HIGH
     }
     // Cycle clock
-    digitalWrite(_config->clock_pin, HIGH);
-    delayMicroseconds(_config->clock_period_us);
-    digitalWrite(_config->clock_pin, LOW);
-    delayMicroseconds(_config->clock_period_us);
+    *_clock_reg |= _clock_bit;  // HIGH
+    delayMicroseconds(_config->clock_period_us / 2);
+    *_clock_reg &= ~_clock_bit;  // LOW
+    delayMicroseconds(_config->clock_period_us / 2);
   }
 }
 

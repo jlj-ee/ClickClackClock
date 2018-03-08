@@ -30,36 +30,36 @@
  *                            D   P
  *              Order: ABCDEFGP (where P is the decimal point)
  */
-enum Segments {
-  S_0 = 0xFC,     //!< B11111100 => 0
-  S_1 = 0x60,     //!< B01100000 => 1
-  S_2 = 0xDA,     //!< B11001010 => 2
-  S_3 = 0xF2,     //!< B11110010 => 3
-  S_4 = 0x66,     //!< B01100110 => 4
-  S_5 = 0xB6,     //!< B10110110 => 5
-  S_6 = 0xBE,     //!< B10111110 => 6
-  S_7 = 0xE0,     //!< B11100000 => 7
-  S_8 = 0xFE,     //!< B11111110 => 8
-  S_9 = 0xF6,     //!< B11110110 => 9
-  S_DOT = 0x01,   //!< B00000001 => Point
-  S_BLANK = 0x00  //!< B00000000 => All off
-};
+typedef enum eSegments {
+  kS0 = 0xFC,     //!< B11111100 => 0
+  kS1 = 0x60,     //!< B01100000 => 1
+  kS2 = 0xDA,     //!< B11001010 => 2
+  kS3 = 0xF2,     //!< B11110010 => 3
+  kS4 = 0x66,     //!< B01100110 => 4
+  kS5 = 0xB6,     //!< B10110110 => 5
+  kS6 = 0xBE,     //!< B10111110 => 6
+  kS7 = 0xE0,     //!< B11100000 => 7
+  kS8 = 0xFE,     //!< B11111110 => 8
+  kS9 = 0xF6,     //!< B11110110 => 9
+  kSDot = 0x01,   //!< B00000001 => Point
+  kSBlank = 0x00  //!< B00000000 => All off
+} Segments;
 
-/* @brief       Bitwise or assignment operator for Segments */
+/*! @brief       Bitwise or assignment operator for Segments */
 inline Segments& operator|=(Segments& lhs, const Segments& rhs);
 
 /*! @brief      Blanking modes for the SerialClockDisplay. */
-enum ClearMode {
-  CLEAR_BOTH = 0,  //!< Clear both halves.
-  CLEAR_LEFT = 1,  //!< Clear left half.
-  CLEAR_RIGHT = 2  //!< Clear right half.
-};
+typedef enum eClearMode {
+  kClearBoth = 0,  //!< Clear both halves.
+  kClearLeft = 1,  //!< Clear left half.
+  kClearRight = 2  //!< Clear right half.
+} ClearMode;
 
 /*! @brief      Digital active level. */
-enum ActiveLevel {
-  ACTIVE_LOW = 0,  //!< Assertion = digital low
-  ACTIVE_HIGH = 1  //!< Assertion = digital high
-};
+typedef enum eActiveLevel {
+  kActiveLow = 0,  //!< Assertion = digital low
+  kActiveHigh = 1  //!< Assertion = digital high
+} ActiveLevel;
 
 /*!
  * @brief      Structure to encapsulate serial display configuration parameters.
@@ -89,7 +89,7 @@ class SerialClockDisplay {
    */
   void begin(const SerialDisplayConfig* display_config);
 
-/*!
+  /*!
    * @brief      Writes an arbitrary segment configuration to the buffer.
    *
    * @param      display_val  8-bit segment configuration.
@@ -133,7 +133,7 @@ class SerialClockDisplay {
    * @param      mode  Chooses whether left/right/both displays are cleared.
    *                   (CLEAR_BOTH or CLEAR_LEFT or CLEAR_RIGHT)
    */
-  void clearDisplay(ClearMode mode = CLEAR_BOTH);
+  void clearDisplay(ClearMode mode = kClearBoth);
 
   /*!
    * @brief      Pulses the strobe pin to latch in data on the serial bus.
@@ -155,11 +155,14 @@ class SerialClockDisplay {
    */
   Segments* readDisplay(void);
 
-  /*===========================================================================*/
+  /*=========================================================================*/
   // Private members and low-level functions
  private:
   const SerialDisplayConfig* _config;  //!< Pointer to the configuration.
   Segments _display[NUM_DISPLAYS];     //!< Buffer of values on the display.
+  volatile uint8_t* _clock_reg;        //!< Pointer to the clock pin register
+  volatile uint8_t* _data_reg;         //!< Pointer to the data pin register
+  uint8_t _clock_bit, _data_bit;       //!< Clock and data pin bit masks
 
   /*!
    * @brief      Shifts data onto the serial bus.
