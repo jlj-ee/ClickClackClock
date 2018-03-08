@@ -1,0 +1,6 @@
+[submodule "lib/RTClib"]
+	path = lib/RTClib
+	url = https://github.com/adafruit/RTClib.git
+[submodule "lib/EnableInterrupt"]
+	path = lib/EnableInterrupt
+	url = https://github.com/GreyGnome/EnableInterrupt.git
