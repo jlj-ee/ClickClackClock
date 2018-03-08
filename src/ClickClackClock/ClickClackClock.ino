@@ -20,53 +20,53 @@
 // Some enum definitions for convenience
 
 // Output pin designations
-typedef enum OutputPin {
-  LEFTEN_PIN = 9,    //!< Active-low output enable pin (!OE) for left side
-  RIGHTEN_PIN = 10,  //!< Active-low output enable pin (!OE) for right side
-  STROBE_PIN = 11,   //!< Active-high strobe pin (latch) for serial data
-  CLOCK_PIN = 12,    //!< Active-high clock pin for serial data
-  DATA_PIN = 13      //!< Data pin for serial data
-};
+typedef enum eOutputPins {
+  kLeftEnPin = 9,    //!< Active-low output enable pin (!OE) for left side
+  kRightEnPin = 10,  //!< Active-low output enable pin (!OE) for right side
+  kStrobePin = 11,   //!< Active-high strobe pin (latch) for serial data
+  kClockPin = 12,    //!< Active-high clock pin for serial data
+  kDataPin = 13      //!< Data pin for serial data
+} OutputPins;
 
 // Input pin designations
-typedef enum InputPin {
-  CLOCK_MODE_PIN = 2,
-  COUNT_MODE_PIN = 3,
-  CTRL1_PIN = 4,
-  CTRL2_PIN = 5,
-  UP_PIN = 6,
-  DOWN_PIN = 7
-};
+typedef enum eInputPin {
+  kClockModePin = 2,
+  kCountModePin = 3,
+  kCtrl1Pin = 4,
+  kCtrl2Pin = 5,
+  kUpPin = 6,
+  kDownPin = 7
+} InputPins;
 
 // Operating modes
-typedef enum Modes {
-  MODE_CLOCK,
-  MODE_CLOCK_SET_HR,
-  MODE_CLOCK_SET_MIN,
-  MODE_STOPWATCH_SET,
-  MODE_STOPWATCH_RUN,
-  MODE_STOPWATCH_PAUSE,
-  MODE_TIMER_SET,
-  MODE_TIMER_RUN,
-  MODE_TIMER_PAUSE
-};
+typedef enum eModes {
+  kModeClock,
+  kModeClockSetHour,
+  kModeClockSetMinute,
+  kModeStopwatchSet,
+  kModeStopwatchRun,
+  kModeStopwatchPause,
+  kModeTimerSet,
+  kModeTimerRun,
+  kModeTimerPause
+} Modes;
 
 /*============================================================================*/
 // Local constants and variables
-const uint8_t INPUT_PINS[] = {CLOCK_MODE_PIN, COUNT_MODE_PIN, CTRL1_PIN,
-                              CTRL2_PIN,      UP_PIN,         DOWN_PIN};
-int nInputPins = sizeof(INPUT_PINS) / sizeof(INPUT_PINS[0]);
+const uint8_t kInputPins[] = {kClockModePin, kCountModePin, kCtrl1Pin,
+                              kCtrl1Pin,     kUpPin,        kDownPin};
+int nInputPins = sizeof(kInputPins) / sizeof(kInputPins[0]);
 DateTime last, current;
 RTC_DS1307 rtc;
-const SerialDisplayConfig config = {.data_pin = DATA_PIN,
-                                    .clock_pin = CLOCK_PIN,
-                                    .strobe_pin = STROBE_PIN,
-                                    .leften_pin = LEFTEN_PIN,
-                                    .righten_pin = RIGHTEN_PIN,
+const SerialDisplayConfig kConfig = {.data_pin = kDataPin,
+                                    .clock_pin = kClockPin,
+                                    .strobe_pin = kStrobePin,
+                                    .leften_pin = kLeftEnPin,
+                                    .righten_pin = kRightEnPin,
                                     .clock_period_us = 4,
                                     .en_pulse_ms = 200,
-                                    .strobe_pol = ACTIVE_HIGH,
-                                    .en_pol = ACTIVE_LOW};
+                                    .strobe_pol = kActiveHigh,
+                                    .en_pol = kActiveLow};
 SerialClockDisplay display;
 volatile Modes current_mode;
 volatile int light_threshold;
@@ -75,12 +75,12 @@ volatile int light_threshold;
 void setup() {
   debug_start(9600);
 
-  display.begin(&config);
+  display.begin(&kConfig);  
 
   // Set up input pins
   for (int i = 0; i < nInputPins; i++) {
-    pinMode(INPUT_PINS[i], INPUT_PULLUP);
-    enableInterrupt(INPUT_PINS[i] | PINCHANGEINTERRUPT, buttonHandler, FALLING);
+    pinMode(kInputPins[i], INPUT_PULLUP);
+    enableInterrupt(kInputPins[i] | PINCHANGEINTERRUPT, buttonHandler, FALLING);
   }
 
   rtc.begin();  // Always returns true
@@ -88,7 +88,7 @@ void setup() {
     debug_print("RTC is NOT running!");
   }
   // Set the RTC to the date & time this sketch was compiled:
-  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
 }
 
 void buttonHandler() {}
