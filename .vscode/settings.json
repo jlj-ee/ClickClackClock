@@ -1,3 +1,3 @@
 {
-  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, ColumnLimit: 80, SortIncludes: false, ReflowComments: true }",
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, ColumnLimit: 80, SortIncludes: false, ReflowComments: false }",
 }

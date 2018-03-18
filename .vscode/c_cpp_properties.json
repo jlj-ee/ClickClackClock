@@ -4,30 +4,32 @@
             "name": "Win32",
             "intelliSenseMode": "clang-x64",
             "includePath": [
-                "${workspaceRoot}",
                 "C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino",
                 "C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include",
                 "C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include",
                 "C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/standard",
-                "C:/Users/JJimenez/Documents/Arduino/Libraries/RTCLib",
-                "C:/Users/JJimenez/Documents/Arduino/Libraries/EnableInterrupt"
+                "${workspaceRoot}",
+                "${workspaceRoot}/lib/RTCLib",
+                "${workspaceRoot}/lib/EnableInterrupt",
+                "C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "__GNUC__=6",
+                "__AVR__",
                 "__AVR_ATmega328P__",
-                "__AVR_ENHANCED__"
+                "__AVR_ENHANCED__",
+                "ARDUINO=100"
             ],
             "browse": {
                 "path": [
-                    "${workspaceRoot}",
                     "C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino",
                     "C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include",
                     "C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.9.2/include",
                     "C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/standard",
-                    "C:/Users/JJimenez/Documents/Arduino/Libraries/RTCLib",
-                    "C:/Users/JJimenez/Documents/Arduino/Libraries/EnableInterrupt"
+                    "C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries",
+                    "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": false,
                 "databaseFilename": ""
