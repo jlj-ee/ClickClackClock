@@ -63,18 +63,8 @@ void SerialClockDisplay::writeBufferNumeric(uint8_t digit_val, uint8_t loc,
   }
 }
 
-void SerialClockDisplay::displayBuffer(void) {
-  // Shift data onto the serial bus
-  for (int i = 0; i < NUM_DISPLAYS; i++) {
-    shiftData(static_cast<int>(interleaveBytes(_display[i], ~_display[i])));
-  }
-  // Latch data in and enable outputs to display new data
-  latchData();
-  updateLeft();
-  updateRight();
-}
-
-void SerialClockDisplay::displayTime(uint8_t left_data, uint8_t right_data) {
+void SerialClockDisplay::writeBufferTime(uint8_t left_data,
+                                         uint8_t right_data) {
   uint8_t data[NUM_SECTIONS] = {left_data, right_data};
   // Extract tens digits and ones digits separately
   uint8_t tens[NUM_SECTIONS] = {static_cast<uint8_t>(left_data / 10),
@@ -92,20 +82,37 @@ void SerialClockDisplay::displayTime(uint8_t left_data, uint8_t right_data) {
     } else {
       writeBuffer(kSBlank, j);
       j++;
-      writeBufferNumeric(ones[i], j, show_colon);
+      if (ones[i] > 0) {
+        writeBufferNumeric(ones[i], j, show_colon);
+      } else {
+        writeBuffer(kSBlank, j);
+      }
     }
     if (data[i] > 0) {
       show_colon = true;
     }
     j++;
   }
-  // Push new data to the displays
-  displayBuffer();
 }
 
-void SerialClockDisplay::clearDisplay(ClearMode mode) {
-  bool left = mode == kClearBoth || mode == kClearLeft;
-  bool right = mode == kClearBoth || mode == kClearRight;
+void SerialClockDisplay::displayBuffer(bool left, bool right) {
+  if (left || right) {
+    // Shift data onto the serial bus
+    for (int i = 0; i < NUM_DISPLAYS; i++) {
+      shiftData(static_cast<int>(interleaveBytes(_display[i], ~_display[i])));
+    }
+    // Latch data in and enable outputs to display new data
+    latchData();
+  }
+  if (left) {
+    updateLeft();
+  }
+  if (right) {
+    updateRight();
+  }
+}
+
+void SerialClockDisplay::clearDisplay(bool left, bool right) {
   // Insert blanks according to the given mode
   if (left) {
     _display[0] = kSBlank;
@@ -116,7 +123,7 @@ void SerialClockDisplay::clearDisplay(ClearMode mode) {
     _display[3] = kSBlank;
   }
   // Push new (blank) data to the displays
-  displayBuffer();
+  displayBuffer(left, right);
 }
 
 void SerialClockDisplay::latchData(void) {
@@ -137,7 +144,13 @@ void SerialClockDisplay::updateLeft(void) {
   digitalWrite(_config->leften_pin, HIGH);
 }
 
-Segments* SerialClockDisplay::readDisplay(void) { return _display; }
+Segments* SerialClockDisplay::readDisplay(void) {
+  static Segments displayCopy[NUM_DISPLAYS];
+  for (int i = 0; i < NUM_DISPLAYS; i++) {
+    displayCopy[i] = _display[i];
+  }
+  return displayCopy;
+}
 
 /*===========================================================================*/
 // Low-level functions
@@ -154,12 +167,12 @@ void SerialClockDisplay::shiftData(int data, bool lsb_first, int bit_count) {
     }
   }
 
-  // Write data and clock
+  // // Write data and clock
   for (int i = 0; i < bit_count; i++) {
     if (data_buffer[i]) {
-      *_data_reg &= ~_data_bit;  // LOW
-    } else {
       *_data_reg |= _data_bit;  // HIGH
+    } else {
+      *_data_reg &= ~_data_bit;  // LOW
     }
     // Cycle clock
     *_clock_reg |= _clock_bit;  // HIGH
@@ -167,6 +180,7 @@ void SerialClockDisplay::shiftData(int data, bool lsb_first, int bit_count) {
     *_clock_reg &= ~_clock_bit;  // LOW
     delayMicroseconds(_config->clock_period_us / 2);
   }
+  *_data_reg &= ~_data_bit;
 }
 
 uint16_t SerialClockDisplay::interleaveBytes(uint8_t a, uint8_t b) {

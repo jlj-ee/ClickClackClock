@@ -48,13 +48,6 @@ typedef enum eSegments {
 /*! @brief       Bitwise or assignment operator for Segments */
 inline Segments& operator|=(Segments& lhs, const Segments& rhs);
 
-/*! @brief      Blanking modes for the SerialClockDisplay. */
-typedef enum eClearMode {
-  kClearBoth = 0,  //!< Clear both halves.
-  kClearLeft = 1,  //!< Clear left half.
-  kClearRight = 2  //!< Clear right half.
-} ClearMode;
-
 /*! @brief      Digital active level. */
 typedef enum eActiveLevel {
   kActiveLow = 0,  //!< Assertion = digital low
@@ -108,13 +101,7 @@ class SerialClockDisplay {
   void writeBufferNumeric(uint8_t digit_val, uint8_t loc, bool show_p = false);
 
   /*!
-   * @brief       Writes the buffer to the serial bus, latches it into the
-   *              drivers, and enables outputs to update the displayed values.
-   */
-  void displayBuffer(void);
-
-  /*!
-   * @brief      Updates the clock display with new time data, according to the
+   * @brief      Updates the buffer with new time data, according to the
    *             following format:
    *           + [Left Left  : Right Right]
    *           + [Tens Ones  : Tens  Ones ]
@@ -125,15 +112,24 @@ class SerialClockDisplay {
    * @param      left_data   Data for the left digits (hours or minutes).
    * @param      right_data  Data for the right digits (minutes or seconds).
    */
-  void displayTime(uint8_t left_data, uint8_t right_data);
+  void writeBufferTime(uint8_t left_data, uint8_t right_data);
+
+  /*!
+   * @brief      Writes the buffer to the serial bus, latches it into the
+   *             drivers, and enables outputs to update the displayed values.
+   *
+   * @param      left   If true, the left display is set
+   * @param      right  If true, the right display is set
+   */
+  void displayBuffer(bool left = true, bool right = true);
 
   /*!
    * @brief      Clears the clock display.
    *
-   * @param      mode  Chooses whether left/right/both displays are cleared.
-   *                   (CLEAR_BOTH or CLEAR_LEFT or CLEAR_RIGHT)
+   * @param      left   If true, the left display is cleared
+   * @param      right  If true, the right display is cleared
    */
-  void clearDisplay(ClearMode mode = kClearBoth);
+  void clearDisplay(bool left = true, bool right = true);
 
   /*!
    * @brief      Pulses the strobe pin to latch in data on the serial bus.
@@ -188,4 +184,4 @@ class SerialClockDisplay {
   uint16_t interleaveBytes(uint8_t a, uint8_t b);
 };
 
-#endif  //_SERIAL_CLOCK_DISPLAY_H_
+#endif  // _SERIAL_CLOCK_DISPLAY_H_
